@@ -1,4 +1,4 @@
-package ru.kassi.onlinekassa.presentation.mainFragment
+package ru.kassi.onlinekassa.presentation.mainFragment.flow
 
 import ru.kassi.onlinekassa.di.ComponentHolder
 import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentComponent

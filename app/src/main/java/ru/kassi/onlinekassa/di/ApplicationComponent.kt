@@ -12,11 +12,13 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        LocalNavigationModule::class,
         MainNavigationModule::class,
+        CoordinatorsModule::class,
         ViewModelModule::class,
     ]
 )
-interface ApplicationComponent {
+interface ApplicationComponent: MainFragmentDeps {
 
     @MainNavigation
     fun router(): Router

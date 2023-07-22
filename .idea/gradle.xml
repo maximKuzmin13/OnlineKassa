@@ -9,22 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/RoboSwag/api-logansquare" />
-            <option value="$PROJECT_DIR$/RoboSwag/base-map" />
-            <option value="$PROJECT_DIR$/RoboSwag/encrypted-shared-prefs" />
-            <option value="$PROJECT_DIR$/RoboSwag/google-map" />
-            <option value="$PROJECT_DIR$/RoboSwag/kotlin-extensions" />
-            <option value="$PROJECT_DIR$/RoboSwag/lifecycle" />
-            <option value="$PROJECT_DIR$/RoboSwag/logging" />
-            <option value="$PROJECT_DIR$/RoboSwag/navigation" />
-            <option value="$PROJECT_DIR$/RoboSwag/recyclerview-adapters" />
-            <option value="$PROJECT_DIR$/RoboSwag/recyclerview-calendar" />
-            <option value="$PROJECT_DIR$/RoboSwag/storable" />
-            <option value="$PROJECT_DIR$/RoboSwag/tabbar-navigation" />
-            <option value="$PROJECT_DIR$/RoboSwag/utils" />
-            <option value="$PROJECT_DIR$/RoboSwag/views" />
-            <option value="$PROJECT_DIR$/RoboSwag/webview" />
-            <option value="$PROJECT_DIR$/RoboSwag/yandex-map" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

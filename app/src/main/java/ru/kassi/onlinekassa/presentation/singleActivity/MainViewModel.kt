@@ -16,11 +16,8 @@ class MainViewModel @AssistedInject constructor(
     private val startUpCoordinatorImpl: StartUpCoordinatorImpl
 ) : ViewModel() {
 
-    val _goToNextScreen: MutableLiveData<FragmentScreen> = MutableLiveData()
-    val goToNextScreen: LiveData<FragmentScreen> = _goToNextScreen
-
     fun goToScreen(screen: FragmentScreen) {
-//        startUpCoordinatorImpl.navigateTo(screen)
+        startUpCoordinatorImpl.start(screen)
     }
 
 

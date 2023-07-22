@@ -4,11 +4,10 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import ru.kassi.onlinekassa.di.MainFragmentDeps
-import ru.kassi.onlinekassa.di.MainNavigationModule
 import ru.kassi.onlinekassa.flow.FlowNavigationModule
 import ru.kassi.onlinekassa.navigation.FeatureScope
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFlowCoordinator
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFlowFragment
+import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
+import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowFragment
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 
 @FeatureScope

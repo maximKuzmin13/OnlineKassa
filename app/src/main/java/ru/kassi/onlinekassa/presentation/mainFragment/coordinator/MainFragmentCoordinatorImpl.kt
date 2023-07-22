@@ -1,7 +1,8 @@
-package ru.kassi.onlinekassa.presentation.mainFragment
+package ru.kassi.onlinekassa.presentation.mainFragment.coordinator
 
 import ru.kassi.onlinekassa.di.ComponentHolder
 import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentComponent
+import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
 import javax.inject.Inject
 
 class MainFragmentCoordinatorImpl @Inject constructor(

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorRes
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.github.terrakok.cicerone.Navigator
@@ -107,9 +108,12 @@ abstract class FlowFragment<TComponent>(
 
     open fun createNavigator(): Navigator = AppNavigator(
         requireActivity(),
-        0,
+        getFragmentContainerId(),
         childFragmentManager
     )
+
+    @IdRes
+    protected fun getFragmentContainerId(): Int = R.id.flow_parent
 
     private val exitRouterOnBackPressed = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
