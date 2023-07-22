@@ -1,0 +1,41 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+gradle.ext.roboswag = [
+        'utils',
+        'logging',
+        'navigation',
+        'storable',
+        'api-logansquare',
+        'lifecycle',
+        'views',
+        'recyclerview-adapters',
+        'kotlin-extensions',
+        'recyclerview-calendar',
+        'tabbar-navigation',
+        'base-map',
+        'yandex-map',
+        'google-map',
+        'webview',
+        'encrypted-shared-prefs'
+]
+
+gradle.ext.roboswag.forEach { module ->
+    include ":$module"
+    project(":$module").projectDir = file("RoboSwag/$module")
+}
+rootProject.name = "OnlineKassa"
+include ':app'
