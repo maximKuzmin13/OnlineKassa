@@ -6,12 +6,16 @@ import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
 import javax.inject.Inject
 
 class MainFragmentCoordinatorImpl @Inject constructor(
-    private val mainBottomFlowCoordinator: MainFlowCoordinator,
+    private val mainFragmentFlowCoordinator: MainFlowCoordinator,
     private val componentHolder: ComponentHolder<MainFragmentComponent>
 ) : MainFragmentCoordinator {
 
+    override fun goToLogin() {
+        mainFragmentFlowCoordinator.goToLogin()
+    }
+
     override fun exit() {
-        mainBottomFlowCoordinator.exit(componentHolder)
+        mainFragmentFlowCoordinator.exit(componentHolder)
     }
 
 }

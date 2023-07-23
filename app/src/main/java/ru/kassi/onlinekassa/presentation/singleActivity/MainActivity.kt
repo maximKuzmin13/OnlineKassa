@@ -7,16 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import me.vponomarenko.injectionmanager.x.XInjectionManager
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.di.ApplicationComponent
@@ -24,7 +18,6 @@ import ru.kassi.onlinekassa.di.ViewModelAssistedFactory
 import ru.kassi.onlinekassa.di.ViewModelFactory
 import ru.kassi.onlinekassa.navigation.MainNavigation
 import ru.kassi.onlinekassa.navigation.Screens
-import ru.kassi.onlinekassa.navigation.StartUpCoordinatorImpl
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -58,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel.goToScreen(Screens.Main())
+        viewModel.goToScreen(Screens.MainScreen())
     }
 
     override fun onResume() {

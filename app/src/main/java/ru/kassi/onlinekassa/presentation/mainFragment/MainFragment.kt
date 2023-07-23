@@ -1,17 +1,19 @@
 package ru.kassi.onlinekassa.presentation.mainFragment
 
-import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentFactory
-import com.github.terrakok.cicerone.androidx.FragmentScreen
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import me.vponomarenko.injectionmanager.x.XInjectionManager
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.viewBinding
+import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentComponent
 
 class MainFragment : BaseFragment(){
 

@@ -6,6 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.kassi.onlinekassa.App
 import ru.kassi.onlinekassa.navigation.MainNavigation
+import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentDeps
 import ru.kassi.onlinekassa.presentation.singleActivity.MainActivity
 import javax.inject.Singleton
 

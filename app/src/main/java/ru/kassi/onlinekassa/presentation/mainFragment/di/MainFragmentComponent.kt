@@ -3,16 +3,24 @@ package ru.kassi.onlinekassa.presentation.mainFragment.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import ru.kassi.onlinekassa.di.MainFragmentDeps
+import ru.kassi.onlinekassa.di.LocalNavigationModule
+import ru.kassi.onlinekassa.di.MainNavigationModule
 import ru.kassi.onlinekassa.flow.FlowNavigationModule
 import ru.kassi.onlinekassa.navigation.FeatureScope
+import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
 import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowFragment
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 
 @FeatureScope
 @Component(
-    modules = [ViewModelModule::class, CoordinatorModule::class, FlowNavigationModule::class, ComponentHolderModule::class],
+    modules = [
+        ViewModelModule::class,
+        CoordinatorModule::class,
+        FlowNavigationModule::class,
+        LocalNavigationModule::class,
+        MainNavigationModule::class,
+        ComponentHolderModule::class
+              ],
     dependencies = [MainFragmentDeps::class]
 )
 interface MainFragmentComponent {

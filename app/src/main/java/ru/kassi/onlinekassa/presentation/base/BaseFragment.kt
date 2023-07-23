@@ -12,8 +12,6 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewbinding.ViewBinding
 import ru.kassi.onlinekassa.loader.LoaderControllerDelegate
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.DIMMER_DEFAULT_ALPHA

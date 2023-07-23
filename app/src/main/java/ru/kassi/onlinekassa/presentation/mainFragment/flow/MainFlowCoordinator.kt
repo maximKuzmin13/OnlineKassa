@@ -5,6 +5,8 @@ import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentComponent
 
 abstract class MainFlowCoordinator {
 
+    abstract fun goToLogin()
+
     fun exit(componentHolder: ComponentHolder<MainFragmentComponent>) {
         componentHolder.destroy()
         quit()

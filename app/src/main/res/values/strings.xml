@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OnlineKassa</string>
+    <string name="title_feature_login">feature_login</string>
+    <string name="title_features">Features</string>
 </resources>

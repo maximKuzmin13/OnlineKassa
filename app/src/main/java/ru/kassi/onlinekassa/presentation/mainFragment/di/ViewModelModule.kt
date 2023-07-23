@@ -1,20 +1,12 @@
 package ru.kassi.onlinekassa.presentation.mainFragment.di
 
-import androidx.lifecycle.ViewModel
-import com.squareup.inject.assisted.dagger2.AssistedModule
+import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
-import dagger.multibindings.IntoMap
-import ru.kassi.onlinekassa.di.ViewModelAssistedFactory
-import ru.kassi.onlinekassa.di.ViewModelKey
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
+import ru.kassi.onlinekassa.presentation.singleActivity.MainViewModel
 
 @Module
-interface ViewModelModule {
+abstract class ViewModelModule {
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainFragmentViewModel::class)
-    fun bindMainFragmentVMFactory(factory: MainFragmentViewModel.Factory): ViewModelAssistedFactory<out ViewModel>
 
 }
