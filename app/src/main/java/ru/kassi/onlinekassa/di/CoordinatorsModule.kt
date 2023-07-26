@@ -2,12 +2,23 @@ package ru.kassi.onlinekassa.di
 
 import dagger.Binds
 import dagger.Module
-import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
-import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinatorImpl
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import ru.kassi.onlinekassa.navigation.StartUpCoordinator
+import ru.kassi.onlinekassa.navigation.StartUpCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinatorImpl
 
 @Module
-abstract class CoordinatorsModule {
+@InstallIn(SingletonComponent::class)
+interface CoordinatorsModule {
 
     @Binds
-    abstract fun mainFragmentFlowCoordinator(impl: MainFlowCoordinatorImpl): MainFlowCoordinator
+    fun mainFragmentCoordinator(impl: MainFragmentCoordinatorImpl): MainFragmentCoordinator
+    @Binds
+    fun loginFragmentCoordinator(impl: LoginFragmentCoordinatorImpl): LoginFragmentCoordinator
+    @Binds
+    fun startUpCoordinator(impl: StartUpCoordinatorImpl): StartUpCoordinator
 }

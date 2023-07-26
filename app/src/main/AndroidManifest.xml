@@ -12,18 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineKassa"
-        tools:targetApi="31" >
+        tools:targetApi="31">
 
-    <activity
-        android:name=".presentation.singleActivity.MainActivity"
-        android:exported="true"
-        android:theme="@style/Theme.OnlineKassa">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".presentation.launchActivity.LaunchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        <activity
+            android:name=".presentation.singleActivity.SingleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.OnlineKassa"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

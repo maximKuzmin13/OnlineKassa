@@ -24,9 +24,6 @@ open class BaseFragment: Fragment {
 
     constructor(@LayoutRes layoutRes: Int) : super(layoutRes)
 
-    protected val view: View
-        @JvmName("requireViewKtx") get() = requireView()
-
     protected val context: Context
         @JvmName("requireContextKtx") get() = requireContext()
 
@@ -72,8 +69,6 @@ open class BaseFragment: Fragment {
             }
         }
     }
-
-    fun <T : View> findViewById(@IdRes id: Int): T = view.findViewById(id)
 
     @ColorInt
     fun getColor(@ColorRes resId: Int): Int = ContextCompat.getColor(requireContext(), resId)

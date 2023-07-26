@@ -1,21 +1,19 @@
 package ru.kassi.onlinekassa.presentation.mainFragment.coordinator
 
-import ru.kassi.onlinekassa.di.ComponentHolder
-import ru.kassi.onlinekassa.presentation.mainFragment.di.MainFragmentComponent
-import ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowCoordinator
+import com.github.terrakok.cicerone.Router
+import ru.kassi.onlinekassa.navigation.MainNavigation
+import ru.kassi.onlinekassa.navigation.Screens
 import javax.inject.Inject
 
 class MainFragmentCoordinatorImpl @Inject constructor(
-    private val mainFragmentFlowCoordinator: MainFlowCoordinator,
-    private val componentHolder: ComponentHolder<MainFragmentComponent>
+    @MainNavigation private val router: Router,
 ) : MainFragmentCoordinator {
 
     override fun goToLogin() {
-        mainFragmentFlowCoordinator.goToLogin()
+        router.navigateTo(Screens.LoginScreen())
     }
 
     override fun exit() {
-        mainFragmentFlowCoordinator.exit(componentHolder)
     }
 
 }

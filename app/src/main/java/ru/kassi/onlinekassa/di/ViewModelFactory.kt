@@ -1,24 +1,45 @@
 package ru.kassi.onlinekassa.di
 
-import android.os.Bundle
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.savedstate.SavedStateRegistryOwner
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineDispatcher
+import ru.kassi.onlinekassa.data.ResourceManager
+import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
+import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
+import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(
-    private val viewModelMap: MutableMap<Class<out ViewModel>, ViewModelAssistedFactory<out ViewModel>>,
-    owner: SavedStateRegistryOwner,
-    arguments: Bundle
-) : AbstractSavedStateViewModelFactory(owner, arguments) {
+@Singleton
+class ViewModelFactory @Inject constructor(
+    private val resourceManager: ResourceManager,
+    private val mainCoordinator: MainFragmentCoordinator,
+    private val loginCoordinator: LoginFragmentCoordinator,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ): T {
-        return viewModelMap[modelClass]?.create(handle) as? T ?: throw IllegalStateException("Unknown ViewModel class")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return when (modelClass) {
+            MainFragmentViewModel::class.java -> {
+                MainFragmentViewModel(
+                    coordinator = mainCoordinator,
+                    resources = resourceManager,
+                    dispatcher = ioDispatcher,
+                )
+            }
+            LoginViewModel::class.java -> {
+                LoginViewModel(
+                    coordinator = loginCoordinator,
+                    resources = resourceManager,
+                    dispatcher = ioDispatcher,
+                )
+            }
+
+            else -> {
+                error("No factory for ${modelClass.simpleName}")
+            }
+        } as T
     }
-
 }

@@ -6,10 +6,13 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import ru.kassi.onlinekassa.navigation.MainNavigation
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class MainNavigationModule {
 
     @MainNavigation

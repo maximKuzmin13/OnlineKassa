@@ -6,17 +6,9 @@ import javax.inject.Inject
 
 class StartUpCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router
-) {
+): StartUpCoordinator {
 
-    fun start(screenToOpen: FragmentScreen) {
-        router.newRootScreen(screenToOpen)
-    }
-
-    fun closeCurrentScreen() {
-        router.exit()
-    }
-
-    fun navigateTo(screenToOpen: FragmentScreen) {
-        router.navigateTo(screenToOpen)
+    override fun goToMainOrAuth() {
+        router.newRootScreen(Screens.LoginScreen())
     }
 }
