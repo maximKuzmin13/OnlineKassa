@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="Text.Regular">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="Text.Medium">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="Text.Bold">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="Text.Regular.10sp">
+        <item name="android:textSize">@dimen/dimens_10_sp</item>
+    </style>
+
+    <style name="Text.Regular.12sp">
+        <item name="android:textSize">@dimen/dimens_12_sp</item>
+    </style>
+
+    <style name="Text.Regular.14sp">
+        <item name="android:textSize">@dimen/dimens_14_sp</item>
+    </style>
+
+    <style name="Text.Regular.13sp">
+        <item name="android:textSize">@dimen/dimens_13_sp</item>
+    </style>
+
+    <style name="Text.Regular.15sp">
+        <item name="android:textSize">@dimen/dimens_15_sp</item>
+    </style>
+
+    <style name="Text.Regular.16sp">
+        <item name="android:textSize">@dimen/dimens_16_sp</item>
+    </style>
+
+    <style name="Text.Medium.12sp">
+        <item name="android:textSize">@dimen/dimens_12_sp</item>
+    </style>
+
+    <style name="Text.Medium.13sp">
+        <item name="android:textSize">@dimen/dimens_13_sp</item>
+    </style>
+
+    <style name="Text.Medium.14sp">
+        <item name="android:textSize">@dimen/dimens_14_sp</item>
+    </style>
+
+    <style name="Text.Medium.16sp">
+        <item name="android:textSize">@dimen/dimens_16_sp</item>
+    </style>
+
+    <style name="Text.Medium.18sp">
+        <item name="android:textSize">@dimen/dimens_18_sp</item>
+    </style>
+
+    <style name="Text.Bold.14sp">
+        <item name="android:textSize">@dimen/dimens_14_sp</item>
+    </style>
+
+    <style name="Text.Bold.16sp">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textSize">@dimen/dimens_16_sp</item>
+    </style>
+
+    <style name="Text.Bold.15sp">
+        <item name="android:textSize">@dimen/dimens_15_sp</item>
+    </style>
+
+    <style name="Text.Regular.18sp">
+        <item name="android:textSize">@dimen/dimens_18_sp</item>
+    </style>
+
+    <style name="Text.Regular.24sp">
+        <item name="android:textSize">@dimen/dimens_24_sp</item>
+    </style>
+
+    <style name="Text.Bold.18sp">
+        <item name="android:textSize">@dimen/dimens_18_sp</item>
+    </style>
+
+    <style name="Text.Bold.20sp">
+        <item name="android:textSize">@dimen/dimens_20_sp</item>
+    </style>
+
+    <style name="Text.Bold.24sp">
+        <item name="android:textSize">@dimen/dimens_24_sp</item>
+    </style>
+
+
+    <style name="Hint" parent="Widget.AppCompat.EditText"/>
+
+    <style name="ToolbarTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/dimens_24_sp</item>
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
+    </style>
+</resources>

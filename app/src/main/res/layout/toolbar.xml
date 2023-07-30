@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimens_40_dp"
+    android:background="@color/white"
+    android:outlineProvider="none"
+    app:titleTextColor="@color/textPrimary"
+    android:titleTextAppearance="@style/ToolbarTextAppearance"
+    android:translationZ="@dimen/dimens_1_dp"
+    app:contentInsetStartWithNavigation="0dp"
+    tools:title="@string/common_greeting_title">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/right_icon"
+        android:layout_width="@dimen/dimens_40_dp"
+        android:layout_height="@dimen/dimens_40_dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/dimens_8_dp"
+        android:padding="@dimen/dimens_8_dp"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        tools:src="@drawable/ic_profile"
+        tools:visibility="visible" />
+
+</androidx.appcompat.widget.Toolbar>

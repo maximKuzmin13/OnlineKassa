@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">OnlineKassa</string>
-    <string name="title_feature_login">feature_login</string>
-    <string name="title_features">Features</string>
+    <string name="inn">ИНН</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="next">Продолжить</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="common_greeting_title" formatted="false">Добрый день, %s</string>
 </resources>
