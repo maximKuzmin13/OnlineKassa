@@ -20,25 +20,27 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Название"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toTopOf="@+id/adress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_value"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="Мир Цветов"
             android:textAlignment="textEnd"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/title"
@@ -46,26 +48,28 @@
 
         <TextView
             android:id="@+id/adress"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="Адрес"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toTopOf="@+id/kassa"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/adress_value"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="8dp"
             android:text="Москва, Гончарный проезд 8/40"
             android:textAlignment="textEnd"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/adress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/adress"
@@ -73,25 +77,27 @@
 
         <TextView
             android:id="@+id/kassa"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="Касса"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toTopOf="@+id/term"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adress" />
 
         <TextView
             android:id="@+id/kassa_value"
-            style="@style/Text.Regular.10sp"
+            style="@style/Text.Regular.12sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="Эвотор"
             android:textAlignment="textEnd"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/kassa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/kassa"

@@ -3,6 +3,7 @@ package ru.kassi.onlinekassa.navigation
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import ru.kassi.onlinekassa.presentation.kassiFragment.KassiFragment
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginFragment
+import ru.kassi.onlinekassa.presentation.mailFragment.MailFragment
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 import ru.kassi.onlinekassa.presentation.pdfFragment.PdfFragment
 import ru.kassi.onlinekassa.presentation.pinFragment.PinFragment
@@ -13,6 +14,8 @@ object Screens {
     fun MainScreen() = FragmentScreen { MainFragment() }
 
     fun LoginScreen() = FragmentScreen { LoginFragment() }
+
+    fun MailScreen() = FragmentScreen { MailFragment() }
 
     fun KassaScreen(id: Int) = FragmentScreen { KassiFragment() }
 

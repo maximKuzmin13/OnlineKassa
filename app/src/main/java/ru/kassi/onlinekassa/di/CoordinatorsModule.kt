@@ -14,6 +14,8 @@ import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCo
 import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.kassiFragment.coordinator.KassiCoordinator
 import ru.kassi.onlinekassa.presentation.kassiFragment.coordinator.KassiCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.mailFragment.coordinator.MailCoordinator
+import ru.kassi.onlinekassa.presentation.mailFragment.coordinator.MailCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinator
 import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.profileFragment.coordinator.ProfileCoordinator
@@ -27,6 +29,8 @@ interface CoordinatorsModule {
     fun mainFragmentCoordinator(impl: MainFragmentCoordinatorImpl): MainFragmentCoordinator
     @Binds
     fun loginFragmentCoordinator(impl: LoginFragmentCoordinatorImpl): LoginFragmentCoordinator
+    @Binds
+    fun mailFragmentCoordinator(impl: MailCoordinatorImpl): MailCoordinator
     @Binds
     fun pinFragmentCoordinator(impl: PinCoordinatorImpl): PinCoordinator
     @Binds

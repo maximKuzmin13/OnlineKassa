@@ -31,6 +31,10 @@ class LoginViewModel @Inject constructor(
         return when (intent) {
             LoginIntent.Loading -> currentState
             LoginIntent.Start -> currentState
+            LoginIntent.Click -> {
+                coordinator.goToMail()
+                currentState
+            }
         }
     }
 

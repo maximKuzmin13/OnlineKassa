@@ -12,10 +12,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/item_border_default"
-        android:paddingHorizontal="@dimen/dimens_8_dp"
-        android:paddingVertical="@dimen/dimens_8_dp"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="@color/black"
+        android:paddingHorizontal="@dimen/dimens_8_dp"
+        android:paddingVertical="@dimen/dimens_8_dp"
         android:translationZ="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Название"
+            android:textColor="@color/textPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Адрес"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toTopOf="@+id/kassa"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -47,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Точка продаж"
+            android:textColor="@color/textPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adress" />
 
@@ -56,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Мир цветов"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title" />
@@ -66,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Москва"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/adress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/adress" />
@@ -76,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Эфотор"
+            android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/kassa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/kassa" />

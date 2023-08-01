@@ -40,11 +40,15 @@ class LoginFragment: BaseFragment() {
             password.setImeOptions(EditorInfo.IME_ACTION_DONE)
             register.setText(R.string.register)
             register.onClick {
-                viewModel.goToMain()
+                dispatchAction(LoginIntent.Click)
             }
             register.enable()
             next.setText(R.string.next)
             next.disable()
         }
+    }
+
+    private fun dispatchAction(intent: LoginIntent) {
+        viewModel.handleIntent(intent)
     }
 }
