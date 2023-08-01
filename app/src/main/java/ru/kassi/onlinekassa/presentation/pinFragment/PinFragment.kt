@@ -82,6 +82,40 @@ class PinFragment : BaseFragment() {
             remove.setOnClickListener {
                 viewModel.removeNumber()
             }
+            viewModel.codeSize.observe(viewLifecycleOwner) {
+                when (it) {
+                    1 -> {
+                        firstPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        secondPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        thirdPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        fourthPin.setImageDrawable(getDrawable(R.drawable.circle))
+                    }
+                    2 -> {
+                        firstPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        secondPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        thirdPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        fourthPin.setImageDrawable(getDrawable(R.drawable.circle))
+                    }
+                    3 -> {
+                        firstPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        secondPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        thirdPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        fourthPin.setImageDrawable(getDrawable(R.drawable.circle))
+                    }
+                    4 -> {
+                        firstPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        secondPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        thirdPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                        fourthPin.setImageDrawable(getDrawable(R.drawable.circle_filled))
+                    }
+                    else -> {
+                        firstPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        secondPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        thirdPin.setImageDrawable(getDrawable(R.drawable.circle))
+                        fourthPin.setImageDrawable(getDrawable(R.drawable.circle))
+                    }
+                }
+            }
         }
     }
 

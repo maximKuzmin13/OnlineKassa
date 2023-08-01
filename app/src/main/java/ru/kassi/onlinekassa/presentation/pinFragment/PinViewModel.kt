@@ -1,5 +1,7 @@
 package ru.kassi.onlinekassa.presentation.pinFragment
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
@@ -18,6 +20,9 @@ class PinViewModel @Inject constructor(
 
     val code = mutableListOf<String>()
 
+    val _codeSize: MutableLiveData<Int> = MutableLiveData()
+    val codeSize: LiveData<Int> = _codeSize
+
     override suspend fun reduceState(intent: PinIntent): PinState {
         return when (intent) {
             PinIntent.Loading -> currentState
@@ -31,10 +36,14 @@ class PinViewModel @Inject constructor(
         } else {
             code.add(number)
         }
+        _codeSize.postValue(code.size)
     }
 
     fun removeNumber() {
-        code.removeLast()
+        if (code.size != 0) {
+            code.removeLast()
+        }
+        _codeSize.postValue(code.size)
     }
 
     fun authorised() {

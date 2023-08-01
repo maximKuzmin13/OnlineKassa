@@ -9,9 +9,10 @@
     android:paddingBottom="@dimen/dimens_8_dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_border"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_border"
+        android:background="@drawable/item_border_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

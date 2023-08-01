@@ -11,9 +11,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_border"
+        android:background="@drawable/item_border_default"
         android:paddingHorizontal="@dimen/dimens_8_dp"
         android:paddingVertical="@dimen/dimens_8_dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        android:translationZ="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
