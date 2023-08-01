@@ -20,8 +20,8 @@ class MainFragmentViewModel @Inject constructor(
         Log.d("tag", "main")
     }
 
-    fun goToLogin() {
-        coordinator.goToLogin()
+    fun goToProfile() {
+        coordinator.goToProfile()
     }
 
     override val onError: suspend (Throwable) -> Unit = {}
@@ -30,6 +30,10 @@ class MainFragmentViewModel @Inject constructor(
         return when (intent) {
             MainFragmentIntent.Loading -> currentState
             MainFragmentIntent.Start -> currentState
+            is MainFragmentIntent.PointClick -> {
+                coordinator.goToKassa(intent.pointId)
+                currentState.copy(onClick = intent.pointId)
+            }
         }
     }
 

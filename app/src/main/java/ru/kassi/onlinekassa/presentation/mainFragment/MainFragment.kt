@@ -29,19 +29,25 @@ class MainFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = PointsAdapter()
+        adapter = PointsAdapter{
+            dispatchIntent(MainFragmentIntent.PointClick(it))
+        }
         adapter.data = PointMockData.data
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, "Алексей")
+        binding.toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, "Владислав")
         binding.toolbarInclude.rightIcon.background = getDrawable(R.drawable.ic_profile)
         binding.toolbarInclude.rightIcon.scaleType = ImageView.ScaleType.CENTER_INSIDE
         binding.toolbarInclude.rightIcon.setOnClickListener {
-            viewModel.goToLogin()
+            viewModel.goToProfile()
         }
         binding.recycler.adapter = adapter
+    }
+
+    private fun dispatchIntent(intent: MainFragmentIntent) {
+        viewModel.handleIntent(intent)
     }
 }

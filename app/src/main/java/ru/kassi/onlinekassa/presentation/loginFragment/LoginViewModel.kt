@@ -1,16 +1,13 @@
 package ru.kassi.onlinekassa.presentation.loginFragment
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
-import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentIntent
-import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentState
-import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
+import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,7 +22,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun goToMain() {
-        coordinator.goToMain()
+        coordinator.goToPin()
     }
 
     override val onError: suspend (Throwable) -> Unit = {}

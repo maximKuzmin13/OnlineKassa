@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
 import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
 import javax.inject.Inject

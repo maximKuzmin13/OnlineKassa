@@ -2,10 +2,13 @@ package ru.kassi.onlinekassa.presentation.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import ru.kassi.onlinekassa.R
+import ru.kassi.onlinekassa.extentions.setStatusBarColor
 
 abstract class BaseActivity: AppCompatActivity() {
 
@@ -21,6 +24,8 @@ abstract class BaseActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        this.setStatusBarColor(R.color.white)
         setContentView(view)
     }
 

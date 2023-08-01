@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OnlineKassa</string>
+    <string name="app_name">Онлайн Касса</string>
     <string name="inn">ИНН</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>

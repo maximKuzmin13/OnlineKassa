@@ -32,15 +32,19 @@ class LoginFragment: BaseFragment() {
         with(binding) {
             inn.setHint(R.string.inn)
             inn.setInputType(InputType.TYPE_CLASS_NUMBER)
+            inn.setMaxLength(10)
             login.setHint(R.string.login)
+            login.setMaxLength(10)
             password.setHint(R.string.password)
+            password.setMaxLength(8)
             password.setImeOptions(EditorInfo.IME_ACTION_DONE)
             register.setText(R.string.register)
-            register.disable()
-            next.setText(R.string.next)
-            next.onClick {
+            register.onClick {
                 viewModel.goToMain()
             }
+            register.enable()
+            next.setText(R.string.next)
+            next.disable()
         }
     }
 }

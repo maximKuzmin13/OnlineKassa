@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.kassi.onlinekassa.data.Point
 import ru.kassi.onlinekassa.databinding.ItemPointBinding
 
-class PointsAdapter: RecyclerView.Adapter<PointsAdapter.PointsViewHolder>() {
+class PointsAdapter(val listener: (Int)-> Unit): RecyclerView.Adapter<PointsAdapter.PointsViewHolder>() {
 
     var data: List<Point> = emptyList()
         set(newValue) {
@@ -29,6 +29,9 @@ class PointsAdapter: RecyclerView.Adapter<PointsAdapter.PointsViewHolder>() {
             titleValue.text = point.name
             adressValue.text = point.adress
             kassaValue.text = point.kassa
+            root.setOnClickListener {
+                listener.invoke(point.id)
+            }
         }
     }
 

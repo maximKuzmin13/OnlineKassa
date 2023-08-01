@@ -5,6 +5,8 @@ import javax.inject.Inject
 
 interface ResourceManager {
     fun getString(resId: Int): String
+
+    fun getContext(): Context
 }
 
 class ResourceManagerImpl @Inject constructor(
@@ -14,4 +16,6 @@ class ResourceManagerImpl @Inject constructor(
     override fun getString(resId: Int): String {
         return context.getString(resId)
     }
+
+    override fun getContext(): Context = context
 }

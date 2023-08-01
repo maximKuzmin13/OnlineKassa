@@ -2,6 +2,7 @@ package ru.kassi.onlinekassa.ui
 
 import android.content.Context
 import android.content.res.Resources
+import android.text.InputFilter
 import android.text.InputType
 import android.text.Layout.Alignment
 import android.util.AttributeSet
@@ -57,6 +58,10 @@ open class KassiEditText @JvmOverloads constructor(
                 translationZ = EDIT_TEXT_TRANSLATION_Z.px
             }
         }
+    }
+
+    fun setMaxLength(length: Int) {
+        editText.filters += InputFilter.LengthFilter(length)
     }
 
     private fun setAlingnment(isFocused: Boolean) {

@@ -103,4 +103,6 @@
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:fontFamily">@font/roboto_black</item>
     </style>
+
+
 </resources>
