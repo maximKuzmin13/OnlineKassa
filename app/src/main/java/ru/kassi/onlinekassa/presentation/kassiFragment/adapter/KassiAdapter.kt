@@ -48,6 +48,7 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
                 } catch (e: Exception) {
                     term.text = point.term
                 }
+                serviceName.text = point.serviceName
                 setColor(this, point.term)
                 root.setOnClickListener { listener.invoke() }
             }
@@ -89,6 +90,7 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
         with(binding){
             itemBorder.setBackgroundResource(background)
             term.setTextColor(this.root.resources.getColor(textColor))
+            serviceName.setTextColor(this.root.resources.getColor(textColor))
         }
     }
 

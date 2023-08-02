@@ -32,7 +32,7 @@ class LoginFragment: BaseFragment() {
         with(binding) {
             inn.setHint(R.string.inn)
             inn.setInputType(InputType.TYPE_CLASS_NUMBER)
-            inn.setMaxLength(10)
+            inn.setMaxLength(12)
             login.setHint(R.string.login)
             login.setMaxLength(10)
             password.setHint(R.string.password)

@@ -82,10 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:text="Касса"
             android:textColor="@color/textPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/term"
+            app:layout_constraintBottom_toTopOf="@+id/service_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adress" />
 
@@ -104,6 +103,21 @@
             app:layout_constraintTop_toTopOf="@+id/kassa" />
 
         <TextView
+            android:id="@+id/service_name"
+            style="@style/Text.Bold.16sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/term"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kassa" />
+
+        <TextView
             android:id="@+id/term"
             style="@style/Text.Bold.16sp"
             android:layout_width="0dp"
@@ -114,7 +128,7 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

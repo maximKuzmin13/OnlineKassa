@@ -42,7 +42,7 @@ class KassiFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbarInclude.toolbar.title = "Кассы"
+        binding.toolbarInclude.toolbar.title = "Сервисы"
         binding.toolbarInclude.toolbar.setNavigationIcon(ru.kassi.onlinekassa.R.drawable.ic_back)
         binding.toolbarInclude.toolbar.setNavigationOnClickListener {
             dispatchIntent(KassiIntent.Back)
