@@ -45,6 +45,7 @@ class MainFragment : BaseFragment() {
             viewModel.goToProfile()
         }
         binding.recycler.adapter = adapter
+        binding.testText.text = viewModel.getTestText()
     }
 
     private fun dispatchIntent(intent: MainFragmentIntent) {

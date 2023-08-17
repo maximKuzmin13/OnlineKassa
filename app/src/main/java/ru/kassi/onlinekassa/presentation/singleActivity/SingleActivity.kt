@@ -1,7 +1,16 @@
 package ru.kassi.onlinekassa.presentation.singleActivity
 
+import android.content.ContentValues.TAG
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.di.ViewModelFactory
@@ -39,4 +48,31 @@ class SingleActivity : BaseActivity() {
         super.onPause()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initRemoteConfig()
+    }
+
+    private fun initRemoteConfig() {
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(2)
+            .build()
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+        fetch()
+    }
+
+    private fun fetch() {
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val updated = task.result
+                    Log.d(TAG, "Config params updated: $updated. Fetch and activate succeeded") // updated = false
+                } else {
+                    Log.d(TAG, "Fetch failed")
+                }
+            }
+    }
 }
