@@ -10,11 +10,12 @@ import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.FragmentLoginBinding
 import ru.kassi.onlinekassa.databinding.FragmentMailBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
-class MailFragment: BaseFragment() {
+class MailFragment: BaseFragment<EmptyNavArgs>() {
 
 
     private val binding by viewBinding(FragmentMailBinding::bind)

@@ -9,12 +9,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.data.KassiMockData
 import ru.kassi.onlinekassa.databinding.FragmentKassiBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.kassiFragment.adapter.KassiAdapter
 
 
 @AndroidEntryPoint
-class KassiFragment : BaseFragment() {
+class KassiFragment : BaseFragment<EmptyNavArgs>() {
 
     private val binding by viewBinding(FragmentKassiBinding::bind)
 
@@ -23,7 +24,6 @@ class KassiFragment : BaseFragment() {
     private lateinit var adapter: KassiAdapter
 
     companion object {
-
         const val MIME_TYPE_PDF = "application/pdf"
         const val PDF_DOWNLOAD_FAIL = "Не удалось загрузить счет"
     }
@@ -48,13 +48,6 @@ class KassiFragment : BaseFragment() {
             dispatchIntent(KassiIntent.Back)
         }
         binding.recycler.adapter = adapter
-        handlePdfEvents()
-    }
-
-    private fun handlePdfEvents() {
-        viewModel.openPdfFileEvent.observe(viewLifecycleOwner) { pdfResource ->
-
-        }
     }
 
     private fun dispatchIntent(intent: KassiIntent) {

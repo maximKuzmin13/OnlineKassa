@@ -9,7 +9,7 @@ class PdfCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router,
 ): PdfCoordinator {
     override fun backToKassi() {
-        router.navigateTo(Screens.KassaScreen(1))
+        router.backTo(Screens.KassaScreen(1))
     }
 
     override fun exit() {}

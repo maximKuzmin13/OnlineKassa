@@ -11,13 +11,14 @@ import ru.kassi.onlinekassa.data.ProfileMockData
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.databinding.FragmentProfileBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentIntent
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
 import ru.kassi.onlinekassa.presentation.profileFragment.adapter.ProfileAdapter
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment() {
+class ProfileFragment : BaseFragment<EmptyNavArgs>() {
 
     private val binding by viewBinding(FragmentProfileBinding::bind)
 

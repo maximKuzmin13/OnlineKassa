@@ -6,6 +6,8 @@ interface MainFragmentCoordinator {
 
     fun goToKassa(id: Int)
 
+    fun goToWebView(link: String)
+
     fun goToProfile()
 
     fun exit()

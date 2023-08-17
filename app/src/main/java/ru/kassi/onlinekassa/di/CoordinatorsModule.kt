@@ -20,6 +20,8 @@ import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinator
 import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.profileFragment.coordinator.ProfileCoordinator
 import ru.kassi.onlinekassa.presentation.profileFragment.coordinator.ProfileCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinator
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinatorImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -41,4 +43,7 @@ interface CoordinatorsModule {
     fun pdfFragmentCoordinator(impl: PdfCoordinatorImpl): PdfCoordinator
     @Binds
     fun startUpCoordinator(impl: StartUpCoordinatorImpl): StartUpCoordinator
+    @Binds
+    fun webviewCoordinator(impl: WebviewCoordinatorImpl): WebviewCoordinator
+
 }

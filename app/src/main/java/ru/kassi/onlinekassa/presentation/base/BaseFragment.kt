@@ -12,6 +12,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.extentions.setStatusBarColor
 import ru.kassi.onlinekassa.loader.LoaderControllerDelegate
@@ -19,13 +20,17 @@ import ru.kassi.onlinekassa.loader.LoaderControllerViewData
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.DIMMER_DEFAULT_ALPHA
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.DIMMER_DEFAULT_COLOR
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.TOOLBAR_DEFAULT_HEIGHT
+import ru.kassi.onlinekassa.presentation.base.mvi.MviNavArgs
+import ru.kassi.onlinekassa.presentation.base.mvi.MviState
 
-open class BaseFragment: Fragment {
+open class BaseFragment<NavArgs>: Fragment {
 
     constructor() : super()
 
     constructor(@LayoutRes layoutRes: Int) : super(layoutRes)
-
+    companion object {
+        const val INIT_ARGS_KEY = "INIT_ARGS"
+    }
     protected val context: Context
         @JvmName("requireContextKtx") get() = requireContext()
 
@@ -37,7 +42,6 @@ open class BaseFragment: Fragment {
         setHasOptionsMenu(true)
         updateLoader()
     }
-
     fun setLoader(
         isVisible: Boolean = false,
         isClickable: Boolean = false,
@@ -79,6 +83,10 @@ open class BaseFragment: Fragment {
         ContextCompat.getColorStateList(context, resId)
 
     fun getDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(context, resId)
+
+    fun initArgs(navArgs: MviNavArgs) {
+        arguments?.putParcelable(INIT_ARGS_KEY, navArgs)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

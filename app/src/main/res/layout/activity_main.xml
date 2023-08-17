@@ -10,6 +10,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:layout="@layout/fragment_main"
-        tools:name="ru.kassi.onlinekassa.presentation.mainFragment.flow.MainFlowFragment" />
+        tools:name="ru.kassi.onlinekassa.presentation.mainFragment.MainFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

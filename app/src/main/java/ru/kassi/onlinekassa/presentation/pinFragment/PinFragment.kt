@@ -15,11 +15,12 @@ import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.databinding.FragmentPinBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
-class PinFragment : BaseFragment() {
+class PinFragment : BaseFragment<EmptyNavArgs>() {
 
     private val binding by viewBinding(FragmentPinBinding::bind)
 

@@ -8,6 +8,8 @@ import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 import ru.kassi.onlinekassa.presentation.pdfFragment.PdfFragment
 import ru.kassi.onlinekassa.presentation.pinFragment.PinFragment
 import ru.kassi.onlinekassa.presentation.profileFragment.ProfileFragment
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebViewFragment
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewNavArgs
 
 object Screens {
 
@@ -24,4 +26,6 @@ object Screens {
     fun PinScreen() = FragmentScreen { PinFragment() }
 
     fun PdfScreen() = FragmentScreen { PdfFragment() }
+
+    fun WebviewScreen(link: String) = FragmentScreen { WebViewFragment.newInstance(WebviewNavArgs(link))}
 }

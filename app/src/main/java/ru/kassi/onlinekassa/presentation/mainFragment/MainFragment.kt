@@ -6,33 +6,42 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
+import ru.kassi.onlinekassa.data.NewsMockData
 import ru.kassi.onlinekassa.data.PointMockData
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.launchActivity.LaunchViewModel
+import ru.kassi.onlinekassa.presentation.mainFragment.adapter.NewsAdapter
 import ru.kassi.onlinekassa.presentation.mainFragment.adapter.PointsAdapter
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment<EmptyNavArgs>() {
 
     private val binding by viewBinding(FragmentMainBinding::bind)
 
     private val viewModel: MainFragmentViewModel by viewModels()
 
-    private lateinit var adapter: PointsAdapter
+    private lateinit var pointsAdapter: PointsAdapter
+    private lateinit var newsAdapter: NewsAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = PointsAdapter{
+        pointsAdapter = PointsAdapter{
             dispatchIntent(MainFragmentIntent.PointClick(it))
         }
-        adapter.data = PointMockData.data
+        newsAdapter = NewsAdapter {
+            dispatchIntent(MainFragmentIntent.NewsClick(it))
+        }
+        pointsAdapter.data = PointMockData.data
+
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -44,8 +53,11 @@ class MainFragment : BaseFragment() {
         binding.toolbarInclude.rightIcon.setOnClickListener {
             viewModel.goToProfile()
         }
-        binding.recycler.adapter = adapter
-        binding.testText.text = viewModel.getTestText()
+        newsAdapter.data = viewModel.getNewsList()
+        binding.points.adapter = pointsAdapter
+        binding.news.adapter = newsAdapter
+        binding.news.isVisible = viewModel.showNews()
+        binding.newsTitle.isVisible = viewModel.showNews()
     }
 
     private fun dispatchIntent(intent: MainFragmentIntent) {

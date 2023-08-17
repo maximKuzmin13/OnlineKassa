@@ -8,10 +8,11 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.databinding.FragmentPdfBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 
 @AndroidEntryPoint
-class PdfFragment: BaseFragment() {
+class PdfFragment: BaseFragment<EmptyNavArgs>() {
 
     private val binding by viewBinding(FragmentPdfBinding::bind)
 

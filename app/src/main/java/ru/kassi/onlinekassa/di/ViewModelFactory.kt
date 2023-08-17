@@ -10,6 +10,8 @@ import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragment
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
 import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinator
+import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewViewModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,6 +21,7 @@ class ViewModelFactory @Inject constructor(
     private val resourceManager: ResourceManager,
     private val mainCoordinator: MainFragmentCoordinator,
     private val loginCoordinator: LoginFragmentCoordinator,
+    private val webviewCoordinator: WebviewCoordinator,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase
 ) : ViewModelProvider.Factory {
@@ -40,7 +43,11 @@ class ViewModelFactory @Inject constructor(
                     dispatcher = ioDispatcher,
                 )
             }
-
+            WebviewViewModel::class.java -> {
+                WebviewViewModel(
+                    coordinator = webviewCoordinator
+                )
+            }
             else -> {
                 error("No factory for ${modelClass.simpleName}")
             }

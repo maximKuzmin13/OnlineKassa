@@ -10,7 +10,7 @@ class LoginFragmentCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router,
 ) : LoginFragmentCoordinator {
     override fun goToMain() {
-        router.navigateTo(Screens.MainScreen())
+        router.newRootChain(Screens.MainScreen())
     }
 
     override fun goToMail() {

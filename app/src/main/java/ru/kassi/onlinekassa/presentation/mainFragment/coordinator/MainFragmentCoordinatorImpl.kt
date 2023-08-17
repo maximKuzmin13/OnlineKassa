@@ -17,6 +17,10 @@ class MainFragmentCoordinatorImpl @Inject constructor(
         router.navigateTo(Screens.KassaScreen(id))
     }
 
+    override fun goToWebView(link: String) {
+        router.navigateTo(Screens.WebviewScreen(link))
+    }
+
     override fun goToProfile() {
         router.navigateTo(Screens.ProfileScreen())
     }

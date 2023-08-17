@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
-import ru.kassi.onlinekassa.presentation.base.SingleLiveEvent
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.kassiFragment.coordinator.KassiCoordinator
 import javax.inject.Inject
@@ -19,7 +18,6 @@ class KassiViewModel @Inject constructor(
 ) : MviViewModel<KassiState, KassiIntent>(KassiState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
-    val openPdfFileEvent = SingleLiveEvent<Int>()
 
     companion object {
         const val FILE_PATH = "app/src/main/res/raw/pdf_test.pdf"
@@ -40,9 +38,8 @@ class KassiViewModel @Inject constructor(
         }
     }
 
-    suspend fun loadPdf() {
+    fun loadPdf() {
         viewModelScope.launch {
-//            openPdfFileEvent.postValue(1)
             kassiCoordinator.goToPdf()
         }
     }

@@ -40,7 +40,6 @@ class SingleActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
-        startUpCoordinator.goToMainOrAuth()
     }
 
     override fun onPause() {
@@ -51,6 +50,7 @@ class SingleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initRemoteConfig()
+        startUpCoordinator.goToMainOrAuth()
     }
 
     private fun initRemoteConfig() {

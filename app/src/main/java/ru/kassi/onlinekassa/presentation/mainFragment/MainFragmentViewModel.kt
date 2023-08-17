@@ -1,8 +1,10 @@
 package ru.kassi.onlinekassa.presentation.mainFragment
 
 import android.util.Log
+import com.google.firebase.remoteconfig.ktx.get
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import ru.kassi.onlinekassa.data.News
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
@@ -24,7 +26,9 @@ class MainFragmentViewModel @Inject constructor(
 
     override val onError: suspend (Throwable) -> Unit = {}
 
-    fun getTestText(): String = remoteConfigUseCase.getInstance().getString("test")
+    fun showNews(): Boolean = remoteConfigUseCase.getInstance().getBoolean("showNews")
+
+    fun getNewsList(): List<News> = remoteConfigUseCase.getNews().orEmpty()
 
     override suspend fun reduceState(intent: MainFragmentIntent): MainFragmentState {
         return when (intent) {
@@ -32,7 +36,12 @@ class MainFragmentViewModel @Inject constructor(
             MainFragmentIntent.Start -> currentState
             is MainFragmentIntent.PointClick -> {
                 coordinator.goToKassa(intent.pointId)
-                currentState.copy(onClick = intent.pointId)
+                currentState
+            }
+
+            is MainFragmentIntent.NewsClick -> {
+                coordinator.goToWebView(intent.link)
+                currentState
             }
         }
     }
