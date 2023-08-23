@@ -17,6 +17,14 @@ class LoginFragmentCoordinatorImpl @Inject constructor(
         router.navigateTo(Screens.MailScreen())
     }
 
+    override fun goToAuth() {
+        router.navigateTo(Screens.AuthScreen())
+    }
+
+    override fun goToRegister() {
+        router.navigateTo(Screens.RegisterScreen())
+    }
+
     override fun goToPin() {
         router.navigateTo(Screens.PinScreen())
     }

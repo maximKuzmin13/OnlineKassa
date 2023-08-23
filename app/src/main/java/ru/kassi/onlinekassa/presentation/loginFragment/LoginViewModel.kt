@@ -5,7 +5,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
-import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
 import javax.inject.Inject
@@ -31,8 +30,13 @@ class LoginViewModel @Inject constructor(
         return when (intent) {
             LoginIntent.Loading -> currentState
             LoginIntent.Start -> currentState
-            LoginIntent.Click -> {
-                coordinator.goToMail()
+            LoginIntent.RegisterClick -> {
+                coordinator.goToRegister()
+                currentState
+            }
+
+            LoginIntent.LoginClick -> {
+                coordinator.goToAuth()
                 currentState
             }
         }

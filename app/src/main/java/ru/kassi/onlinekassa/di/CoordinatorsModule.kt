@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.kassi.onlinekassa.navigation.StartUpCoordinator
 import ru.kassi.onlinekassa.navigation.StartUpCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.authFragment.AuthCoordinator
+import ru.kassi.onlinekassa.presentation.authFragment.AuthCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
@@ -20,6 +22,8 @@ import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinator
 import ru.kassi.onlinekassa.presentation.pdfFragment.coordinator.PdfCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.profileFragment.coordinator.ProfileCoordinator
 import ru.kassi.onlinekassa.presentation.profileFragment.coordinator.ProfileCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.registrationFragment.RegistrationCoordinator
+import ru.kassi.onlinekassa.presentation.registrationFragment.RegistrationCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinator
 import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinatorImpl
 
@@ -45,5 +49,9 @@ interface CoordinatorsModule {
     fun startUpCoordinator(impl: StartUpCoordinatorImpl): StartUpCoordinator
     @Binds
     fun webviewCoordinator(impl: WebviewCoordinatorImpl): WebviewCoordinator
+    @Binds
+    fun authCoordinator(impl: AuthCoordinatorImpl): AuthCoordinator
+    @Binds
+    fun registrationCoordinator(impl: RegistrationCoordinatorImpl): RegistrationCoordinator
 
 }

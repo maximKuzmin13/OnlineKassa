@@ -4,6 +4,7 @@
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="next">Продолжить</string>
+    <string name="auth">Авторизоваться</string>
     <string name="register">Зарегистрироваться</string>
     <string name="common_greeting_title" formatted="false">Добрый день, %s</string>
     <string name="term" formatted="false">до %s</string>
