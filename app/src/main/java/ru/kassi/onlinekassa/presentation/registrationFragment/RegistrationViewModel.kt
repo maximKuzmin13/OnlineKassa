@@ -1,11 +1,12 @@
 package ru.kassi.onlinekassa.presentation.registrationFragment
 
-import androidx.lifecycle.SavedStateHandle
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ru.kassi.onlinekassa.domain.AuthRepository
-import ru.kassi.onlinekassa.presentation.authFragment.AuthCoordinator
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
+import ru.kassi.onlinekassa.domain.api.auth.AuthRepository
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import javax.inject.Inject
@@ -18,13 +19,36 @@ class RegistrationViewModel @Inject constructor(
     MviViewModel<EmptyNavArgs, RegistrationState, RegistrationIntent>(RegistrationState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
-    override suspend fun reduceState(intent: RegistrationIntent){
+    val _errorToast: MutableLiveData<String> = MutableLiveData()
+    val errorToast: LiveData<String> = _errorToast
+
+    private val handler = CoroutineExceptionHandler { _, throwable ->
+        handleError(throwable)
+    }
+
+    override suspend fun reduceState(intent: RegistrationIntent) {
         return when (intent) {
             RegistrationIntent.Loading -> {}
             RegistrationIntent.Start -> {}
-            RegistrationIntent.Next -> {
-                coordinator.goToPin()
-            }
+            RegistrationIntent.Next -> register()
+            is RegistrationIntent.Inn -> _state.value = currentState.copy(innS = intent.inn)
+            is RegistrationIntent.Login -> _state.value = currentState.copy(loginS = intent.login)
+            is RegistrationIntent.Pass -> _state.value = currentState.copy(passS = intent.pass)
         }
+    }
+
+    private fun register() {
+        viewModelScope.launch(handler) {
+            authRepository.register(
+                login = currentState.loginS.orEmpty(),
+                inn = currentState.innS.orEmpty(),
+                pass = currentState.passS.orEmpty()
+            )
+            coordinator.goToPin()
+        }
+    }
+
+    private fun handleError(e: Throwable) {
+        _errorToast.value = e.message
     }
 }

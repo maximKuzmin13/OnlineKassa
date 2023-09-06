@@ -3,8 +3,8 @@ package ru.kassi.onlinekassa.presentation.mainFragment.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.kassi.onlinekassa.data.Point
 import ru.kassi.onlinekassa.databinding.ItemPointBinding
+import ru.kassi.onlinekassa.domain.api.points.Point
 
 class PointsAdapter(val listener: (Int)-> Unit): RecyclerView.Adapter<PointsAdapter.PointsViewHolder>() {
 
@@ -27,10 +27,10 @@ class PointsAdapter(val listener: (Int)-> Unit): RecyclerView.Adapter<PointsAdap
         val point = data[position]
         with(holder.binding){
             titleValue.text = point.name
-            adressValue.text = point.address
-            kassaValue.text = point.kassa
+            adressValue.text = point.adress
+            kassaValue.text = ""
             root.setOnClickListener {
-                listener.invoke(point.id)
+                listener.invoke(point.num)
             }
         }
     }

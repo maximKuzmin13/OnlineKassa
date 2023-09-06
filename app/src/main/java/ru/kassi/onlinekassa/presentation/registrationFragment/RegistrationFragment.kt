@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
@@ -47,6 +49,26 @@ class RegistrationFragment : BaseFragment<EmptyNavArgs, RegistrationState, Regis
             next.setState(true)
             next.onClick {
                 dispatchAction(RegistrationIntent.Next)
+            }
+        }
+        viewModel.errorToast.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun renderState(viewState: RegistrationState) {
+        super.renderState(viewState)
+        with(viewState){
+            with(binding){
+                inn.editText.doAfterTextChanged {
+                    dispatchAction(RegistrationIntent.Inn(it.toString()))
+                }
+                login.editText.doAfterTextChanged {
+                    dispatchAction(RegistrationIntent.Login(it.toString()))
+                }
+                password.editText.doAfterTextChanged {
+                    dispatchAction(RegistrationIntent.Pass(it.toString()))
+                }
             }
         }
     }

@@ -8,6 +8,8 @@ import ru.kassi.onlinekassa.navigation.StartUpCoordinator
 import ru.kassi.onlinekassa.navigation.StartUpCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.authFragment.AuthCoordinator
 import ru.kassi.onlinekassa.presentation.authFragment.AuthCoordinatorImpl
+import ru.kassi.onlinekassa.presentation.innFragment.InnCoordinator
+import ru.kassi.onlinekassa.presentation.innFragment.InnCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinatorImpl
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
@@ -53,5 +55,7 @@ interface CoordinatorsModule {
     fun authCoordinator(impl: AuthCoordinatorImpl): AuthCoordinator
     @Binds
     fun registrationCoordinator(impl: RegistrationCoordinatorImpl): RegistrationCoordinator
+    @Binds
+    fun innCoordinator(impl: InnCoordinatorImpl): InnCoordinator
 
 }

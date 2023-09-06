@@ -27,8 +27,11 @@
             style="@style/Text.Regular.16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Название"
             android:textColor="@color/textPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/adress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +40,7 @@
             style="@style/Text.Regular.16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Адрес"
             android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toTopOf="@+id/kassa"
@@ -48,43 +52,57 @@
             style="@style/Text.Regular.16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="7dp"
             android:text="Точка продаж"
             android:textColor="@color/textPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adress" />
 
         <TextView
             android:id="@+id/title_value"
             style="@style/Text.Regular.16sp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:gravity="right"
             android:text="Мир цветов"
             android:textColor="@color/textPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintBottom_toTopOf="@+id/adress_value"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/title"
             app:layout_constraintTop_toTopOf="@+id/title" />
 
         <TextView
             android:id="@+id/adress_value"
             style="@style/Text.Regular.16sp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="right"
             android:text="Москва"
             android:textColor="@color/textPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/adress"
+            app:layout_constraintBottom_toTopOf="@+id/kassa_value"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/adress" />
+            app:layout_constraintStart_toEndOf="@+id/adress"
+            app:layout_constraintTop_toBottomOf="@+id/title_value" />
 
         <TextView
             android:id="@+id/kassa_value"
             style="@style/Text.Regular.16sp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:gravity="right"
             android:text="Эфотор"
             android:textColor="@color/textPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/kassa"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/kassa" />
+            app:layout_constraintStart_toEndOf="@+id/kassa"
+            app:layout_constraintTop_toBottomOf="@+id/adress_value" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

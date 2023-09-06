@@ -2,16 +2,12 @@ package ru.kassi.onlinekassa.presentation.authFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
-import ru.kassi.onlinekassa.domain.AuthRepository
-import ru.kassi.onlinekassa.network.ServerException
+import ru.kassi.onlinekassa.domain.api.auth.AuthRepository
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel

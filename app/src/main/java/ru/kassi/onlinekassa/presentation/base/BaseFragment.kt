@@ -59,8 +59,8 @@ abstract class BaseFragment<NavArgs, State, Action, VM>: Fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CoroutineScope(SupervisorJob()).launch {
-            viewModel.state.collect {
+        CoroutineScope(Dispatchers.Main + SupervisorJob()).launch {
+            viewModel.state.collectLatest {
                 renderState(it)
             }
         }

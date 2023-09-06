@@ -10,6 +10,7 @@ import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.data.ProfileMockData
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.databinding.FragmentProfileBinding
+import ru.kassi.onlinekassa.domain.api.profile.Profile
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
@@ -32,7 +33,6 @@ class ProfileFragment : BaseFragment<EmptyNavArgs, ProfileState, ProfileIntent, 
         savedInstanceState: Bundle?
     ): View? {
         adapter = ProfileAdapter()
-        adapter.data = ProfileMockData.data
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
@@ -44,6 +44,15 @@ class ProfileFragment : BaseFragment<EmptyNavArgs, ProfileState, ProfileIntent, 
             dispatchIntent(ProfileIntent.Back)
         }
         binding.recycler.adapter = adapter
+    }
+
+    override fun renderState(viewState: ProfileState) {
+        super.renderState(viewState)
+        with(viewState){
+            with(binding){
+                adapter.data = profile
+            }
+        }
     }
 
     private fun dispatchIntent(intent: ProfileIntent) {

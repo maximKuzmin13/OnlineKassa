@@ -1,13 +1,10 @@
 package ru.kassi.onlinekassa.presentation.loginFragment
 
 import android.util.Log
-import androidx.lifecycle.SavedStateHandle
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
-import ru.kassi.onlinekassa.domain.AuthRepository
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator

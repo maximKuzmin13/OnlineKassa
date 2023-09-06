@@ -23,11 +23,6 @@ class KassiFragment : BaseFragment<EmptyNavArgs, KassiState, KassiIntent, KassiV
 
     private lateinit var adapter: KassiAdapter
 
-    companion object {
-        const val MIME_TYPE_PDF = "application/pdf"
-        const val PDF_DOWNLOAD_FAIL = "Не удалось загрузить счет"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

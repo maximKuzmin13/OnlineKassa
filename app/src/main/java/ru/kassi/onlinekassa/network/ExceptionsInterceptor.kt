@@ -34,7 +34,8 @@ class ExceptionsInterceptor @Inject constructor() : Interceptor {
                 val jsonObject = JSONObject(responseBody)
                 val message = jsonObject.optString(ERROR_MESSAGE_FIELD)
                 when {
-                    responseBody.contains("err") -> ServerException(
+                    responseBody.contains("err.sys") -> null
+                    responseBody.contains("\"status\":\"err\"") -> ServerException(
                         message = message
                     )
 
@@ -42,7 +43,8 @@ class ExceptionsInterceptor @Inject constructor() : Interceptor {
                 }
             } catch (error: JSONException) {
                 when {
-                    responseBody.contains("err") -> ServerException()
+                    responseBody.contains("err.sys") -> null
+                    responseBody.contains("\"status\":\"err\"") -> ServerException()
 
                     else -> null
                 }

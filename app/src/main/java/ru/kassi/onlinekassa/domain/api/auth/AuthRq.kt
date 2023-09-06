@@ -1,4 +1,4 @@
-package ru.kassi.onlinekassa.domain.api
+package ru.kassi.onlinekassa.domain.api.auth
 
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass

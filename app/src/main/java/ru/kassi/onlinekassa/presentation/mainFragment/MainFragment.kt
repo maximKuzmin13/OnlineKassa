@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -40,14 +41,13 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
         newsAdapter = NewsAdapter {
             dispatchIntent(MainFragmentIntent.NewsClick(it))
         }
-        pointsAdapter.data = PointMockData.data
 
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, "Владислав")
+
         binding.toolbarInclude.rightIcon.background = getDrawable(R.drawable.ic_profile)
         binding.toolbarInclude.rightIcon.scaleType = ImageView.ScaleType.CENTER_INSIDE
         binding.toolbarInclude.rightIcon.setOnClickListener {
@@ -58,6 +58,21 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
         binding.news.adapter = newsAdapter
         binding.news.isVisible = viewModel.showNews()
         binding.newsTitle.isVisible = viewModel.showNews()
+        viewModel.errorToast.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun renderState(viewState: MainFragmentState) {
+        super.renderState(viewState)
+        with(viewState){
+            with(binding){
+                userName?.let {
+                    toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, it)
+                }
+                pointsAdapter.data = pointList
+            }
+        }
     }
 
     private fun dispatchIntent(intent: MainFragmentIntent) {

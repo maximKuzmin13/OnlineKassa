@@ -1,4 +1,4 @@
-package ru.kassi.onlinekassa.domain.api
+package ru.kassi.onlinekassa.domain.api.auth
 
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -8,7 +8,7 @@ interface AuthApi {
     @POST("api/ApiTrying")
     suspend fun register(
         @Query("rq") rq: String?,
-    ): Any
+    ): AuthResponse
 
     @POST("api/ApiTrying")
     suspend fun auth(

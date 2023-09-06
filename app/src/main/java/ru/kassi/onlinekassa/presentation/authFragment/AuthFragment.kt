@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.core.view.isNotEmpty
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,10 +14,7 @@ import ru.kassi.onlinekassa.databinding.FragmentAuthBinding
 import ru.kassi.onlinekassa.extentions.args
 import ru.kassi.onlinekassa.extentions.withArgs
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
-import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
-import ru.kassi.onlinekassa.presentation.webviewFragment.WebViewFragment
-import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewNavArgs
 
 @AndroidEntryPoint
 class AuthFragment : BaseFragment<AuthNavArgs, AuthState, AuthIntent, AuthViewModel>() {

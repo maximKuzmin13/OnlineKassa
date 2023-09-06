@@ -18,7 +18,7 @@ class LoginFragmentCoordinatorImpl @Inject constructor(
     }
 
     override fun goToAuth() {
-        router.navigateTo(Screens.AuthScreen())
+        router.navigateTo(Screens.InnScreen())
     }
 
     override fun goToRegister() {
