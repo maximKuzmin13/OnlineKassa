@@ -1,23 +1,17 @@
 package ru.kassi.onlinekassa.presentation.kassiFragment.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.RecyclerView
 import ru.kassi.onlinekassa.R
-import ru.kassi.onlinekassa.data.Kassa
 import ru.kassi.onlinekassa.databinding.ItemKassaBinding
-import ru.kassi.onlinekassa.databinding.ItemKassaDoubleBinding
-import ru.kassi.onlinekassa.databinding.ItemKassaSingleBinding
 import java.text.SimpleDateFormat
-import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var data: List<Kassa> = emptyList()
+    var data: List<Pair<String?, String?>> = emptyList()
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
@@ -39,17 +33,17 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
         val point = data[position]
         with(holder as KassiViewHolder){
             with(binding) {
-                titleValue.text = point.title
-                adressValue.text = point.address
-                kassaValue.text = point.kassa
+                titleValue.text = "point.title"
+                adressValue.text = "point.address"
+                kassaValue.text = "point.kassa"
                 try {
-                    SimpleDateFormat("dd.MM.yyyy").parse(point.term)
-                    term.text = binding.root.resources.getString(R.string.term, point.term)
+                    SimpleDateFormat("dd.MM.yyyy").parse(point.second.toString())
+                    term.text = binding.root.resources.getString(R.string.term, point.second)
                 } catch (e: Exception) {
-                    term.text = point.term
+                    term.text = point.second ?: ""
                 }
-                serviceName.text = point.serviceName
-                setColor(this, point.term)
+                serviceName.text = point.first
+                setColor(this, point.second ?: "")
                 root.setOnClickListener { listener.invoke() }
             }
         }
@@ -95,6 +89,4 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
     }
 
     class KassiViewHolder(val binding: ItemKassaBinding): RecyclerView.ViewHolder(binding.root)
-//    class KassiSingleViewHolder(val binding: ItemKassaSingleBinding): RecyclerView.ViewHolder(binding.root)
-//    class KassiDoubleViewHolder(val binding: ItemKassaDoubleBinding): RecyclerView.ViewHolder(binding.root)
 }

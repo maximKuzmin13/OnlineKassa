@@ -8,8 +8,8 @@ import javax.inject.Inject
 class PdfCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router,
 ): PdfCoordinator {
-    override fun backToKassi() {
-        router.backTo(Screens.KassaScreen(1))
+    override fun backToKassi(num: String) {
+        router.backTo(Screens.KassaScreen(num))
     }
 
     override fun exit() {}

@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
+import ru.kassi.onlinekassa.domain.api.kassa.KassaRepository
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.kassiFragment.coordinator.KassiCoordinator
@@ -16,16 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class KassiViewModel @Inject constructor(
     private val kassiCoordinator: KassiCoordinator,
+    private val kassaRepository: KassaRepository,
     private val resources: ResourceManager,
     @IoDispatcher dispatcher: CoroutineDispatcher,
-) : MviViewModel<EmptyNavArgs, KassiState, KassiIntent>(KassiState()) {
+) : MviViewModel<KassaNavArgs, KassiState, KassiIntent>(KassiState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
-
-    companion object {
-        const val FILE_PATH = "app/src/main/res/raw/pdf_test.pdf"
+    init {
+        loadKassaInfo()
     }
-
     override suspend fun reduceState(intent: KassiIntent) {
         return when (intent) {
             KassiIntent.Loading -> {}
@@ -36,6 +36,16 @@ class KassiViewModel @Inject constructor(
             KassiIntent.LoadPdf -> {
                 loadPdf()
             }
+            is KassiIntent.Num -> _state.value = currentState.copy(num = intent.num)
+        }
+    }
+
+    fun loadKassaInfo() {
+        viewModelScope.launch {
+            val a = kassaRepository.getKassaInfo(currentState.num.orEmpty()).response
+            _state.value = currentState.copy(
+                kassaList = a
+            )
         }
     }
 

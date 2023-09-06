@@ -13,7 +13,7 @@ class MainFragmentCoordinatorImpl @Inject constructor(
         router.navigateTo(Screens.LoginScreen())
     }
 
-    override fun goToKassa(id: Int) {
+    override fun goToKassa(id: String) {
         router.navigateTo(Screens.KassaScreen(id))
     }
 

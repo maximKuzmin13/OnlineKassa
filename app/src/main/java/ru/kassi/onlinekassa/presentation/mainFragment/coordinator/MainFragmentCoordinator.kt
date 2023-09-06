@@ -4,7 +4,7 @@ interface MainFragmentCoordinator {
 
     fun goToLogin()
 
-    fun goToKassa(id: Int)
+    fun goToKassa(id: String)
 
     fun goToWebView(link: String)
 

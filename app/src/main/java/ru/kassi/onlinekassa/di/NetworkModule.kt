@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.kassi.onlinekassa.domain.api.auth.AuthApi
 import ru.kassi.onlinekassa.domain.api.innCheck.InnCheckApi
+import ru.kassi.onlinekassa.domain.api.kassa.KassaApi
 import ru.kassi.onlinekassa.domain.api.points.PointApi
 import ru.kassi.onlinekassa.domain.api.profile.ProfileApi
 import javax.inject.Singleton
@@ -43,4 +44,9 @@ class NetworkModule {
     @Provides
     fun provideProfileApi(retrofit: Retrofit): ProfileApi =
         retrofit.create(ProfileApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideKassaApi(retrofit: Retrofit): KassaApi =
+        retrofit.create(KassaApi::class.java)
 }

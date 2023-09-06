@@ -4,6 +4,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import ru.kassi.onlinekassa.presentation.authFragment.AuthFragment
 import ru.kassi.onlinekassa.presentation.authFragment.AuthNavArgs
 import ru.kassi.onlinekassa.presentation.innFragment.InnFragment
+import ru.kassi.onlinekassa.presentation.kassiFragment.KassaNavArgs
 import ru.kassi.onlinekassa.presentation.kassiFragment.KassiFragment
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginFragment
 import ru.kassi.onlinekassa.presentation.mailFragment.MailFragment
@@ -26,7 +27,7 @@ object Screens {
 
     fun MailScreen() = FragmentScreen { MailFragment() }
 
-    fun KassaScreen(id: Int) = FragmentScreen { KassiFragment() }
+    fun KassaScreen(id: String) = FragmentScreen { KassiFragment.newInstance(KassaNavArgs(num = id)) }
 
     fun ProfileScreen() = FragmentScreen { ProfileFragment() }
 

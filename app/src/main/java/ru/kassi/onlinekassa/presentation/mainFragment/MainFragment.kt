@@ -36,7 +36,7 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
         savedInstanceState: Bundle?
     ): View? {
         pointsAdapter = PointsAdapter{
-            dispatchIntent(MainFragmentIntent.PointClick(it))
+            dispatchIntent(MainFragmentIntent.PointClick(it.toString()))
         }
         newsAdapter = NewsAdapter {
             dispatchIntent(MainFragmentIntent.NewsClick(it))

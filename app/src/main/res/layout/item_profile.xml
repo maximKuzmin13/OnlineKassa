@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/dimens_48_dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/item_border_default"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,17 +19,17 @@
             android:id="@+id/title"
             android:layout_width="@dimen/dimens_250_dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="center_vertical|start"
             android:layout_marginHorizontal="@dimen/dimens_16_dp"
-            android:layout_gravity="center_vertical|start"/>
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginHorizontal="@dimen/dimens_16_dp" />
+            android:layout_marginHorizontal="@dimen/dimens_16_dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

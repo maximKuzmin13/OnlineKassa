@@ -7,4 +7,6 @@ sealed class KassiIntent: MviIntent {
     object Loading: KassiIntent()
     object Back: KassiIntent()
     object LoadPdf: KassiIntent()
+
+    data class Num(val num: String): KassiIntent()
 }

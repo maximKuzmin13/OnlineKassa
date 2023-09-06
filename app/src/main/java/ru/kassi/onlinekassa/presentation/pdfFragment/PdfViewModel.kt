@@ -24,7 +24,7 @@ class PdfViewModel @Inject constructor(
             PdfIntent.Loading -> {}
             PdfIntent.Start -> {}
             PdfIntent.Back -> {
-                coordinator.backToKassi()
+                coordinator.backToKassi("0")
             }
         }
     }
