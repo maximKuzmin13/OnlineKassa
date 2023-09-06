@@ -16,7 +16,7 @@ import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 
 @AndroidEntryPoint
-class WebViewFragment : BaseFragment<WebviewNavArgs>() {
+class WebViewFragment : BaseFragment<WebviewNavArgs, WebViewState, WebviewIntent, WebviewViewModel>() {
 
     companion object {
         private const val WEBVIEW_ARGS = "webview_args"
@@ -30,8 +30,7 @@ class WebViewFragment : BaseFragment<WebviewNavArgs>() {
 
     private val navArgs: WebviewNavArgs by args(WEBVIEW_ARGS)
 
-
-    private val viewModel: WebviewViewModel by viewModels()
+    override val viewModel: WebviewViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

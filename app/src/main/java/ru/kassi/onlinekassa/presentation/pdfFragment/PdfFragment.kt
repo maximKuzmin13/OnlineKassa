@@ -12,11 +12,11 @@ import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 
 @AndroidEntryPoint
-class PdfFragment: BaseFragment<EmptyNavArgs>() {
+class PdfFragment: BaseFragment<EmptyNavArgs, PdfState, PdfIntent, PdfViewModel>() {
 
     private val binding by viewBinding(FragmentPdfBinding::bind)
 
-    private val viewModel: PdfViewModel by viewModels()
+    override val viewModel: PdfViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

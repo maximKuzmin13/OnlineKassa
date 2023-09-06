@@ -1,13 +1,15 @@
 package ru.kassi.onlinekassa.di
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.assisted.Assisted
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
+import ru.kassi.onlinekassa.domain.AuthRepository
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 import ru.kassi.onlinekassa.presentation.loginFragment.coordinator.LoginFragmentCoordinator
-import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
 import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
 import ru.kassi.onlinekassa.presentation.webviewFragment.WebviewCoordinator
@@ -22,6 +24,7 @@ class ViewModelFactory @Inject constructor(
     private val mainCoordinator: MainFragmentCoordinator,
     private val loginCoordinator: LoginFragmentCoordinator,
     private val webviewCoordinator: WebviewCoordinator,
+    private val authRepository: AuthRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase
 ) : ViewModelProvider.Factory {
@@ -33,14 +36,14 @@ class ViewModelFactory @Inject constructor(
                     coordinator = mainCoordinator,
                     resources = resourceManager,
                     dispatcher = ioDispatcher,
-                    remoteConfigUseCase
+                    remoteConfigUseCase = remoteConfigUseCase
                 )
             }
             LoginViewModel::class.java -> {
                 LoginViewModel(
                     coordinator = loginCoordinator,
                     resources = resourceManager,
-                    dispatcher = ioDispatcher,
+                    dispatcher = ioDispatcher
                 )
             }
             WebviewViewModel::class.java -> {

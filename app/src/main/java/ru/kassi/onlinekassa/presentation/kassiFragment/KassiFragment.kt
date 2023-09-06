@@ -15,11 +15,11 @@ import ru.kassi.onlinekassa.presentation.kassiFragment.adapter.KassiAdapter
 
 
 @AndroidEntryPoint
-class KassiFragment : BaseFragment<EmptyNavArgs>() {
+class KassiFragment : BaseFragment<EmptyNavArgs, KassiState, KassiIntent, KassiViewModel>() {
 
     private val binding by viewBinding(FragmentKassiBinding::bind)
 
-    private val viewModel: KassiViewModel by viewModels()
+    override val viewModel: KassiViewModel by viewModels()
 
     private lateinit var adapter: KassiAdapter
 

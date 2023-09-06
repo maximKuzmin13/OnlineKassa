@@ -12,11 +12,11 @@ import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 @AndroidEntryPoint
-class LoginFragment: BaseFragment<EmptyNavArgs>() {
+class LoginFragment: BaseFragment<EmptyNavArgs, LoginState, LoginIntent, LoginViewModel>() {
 
     private val binding by viewBinding(FragmentLoginBinding::bind)
 
-    private val viewModel: LoginViewModel by viewModels()
+    override val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +33,9 @@ class LoginFragment: BaseFragment<EmptyNavArgs>() {
             register.onClick {
                 dispatchAction(LoginIntent.RegisterClick)
             }
-            register.enable()
+            register.setState(true)
             next.setText(R.string.auth)
-            next.enable()
+            next.setState(true)
             next.onClick {
                 dispatchAction(LoginIntent.LoginClick)
             }

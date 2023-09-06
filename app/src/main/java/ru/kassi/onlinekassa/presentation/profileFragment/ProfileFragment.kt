@@ -18,11 +18,11 @@ import ru.kassi.onlinekassa.presentation.mainFragment.MainFragmentViewModel
 import ru.kassi.onlinekassa.presentation.profileFragment.adapter.ProfileAdapter
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<EmptyNavArgs>() {
+class ProfileFragment : BaseFragment<EmptyNavArgs, ProfileState, ProfileIntent, ProfileViewModel>() {
 
     private val binding by viewBinding(FragmentProfileBinding::bind)
 
-    private val viewModel: ProfileViewModel by viewModels()
+    override val viewModel: ProfileViewModel by viewModels()
 
     private lateinit var adapter: ProfileAdapter
 

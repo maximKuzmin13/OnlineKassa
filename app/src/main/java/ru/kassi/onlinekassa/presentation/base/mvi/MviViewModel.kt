@@ -1,5 +1,6 @@
 package ru.kassi.onlinekassa.presentation.base.mvi
 
+import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-abstract class MviViewModel<State : MviState, Intent : MviIntent>(
+abstract class MviViewModel<NavArgs : Parcelable, State : MviState, Intent : MviIntent>(
     initialState: State,
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
@@ -27,7 +28,7 @@ abstract class MviViewModel<State : MviState, Intent : MviIntent>(
 
     abstract val onError: suspend (Throwable) -> Unit
 
-    protected abstract suspend fun reduceState(intent: Intent): State
+    protected abstract suspend fun reduceState(intent: Intent)
 
     protected val _state = MutableStateFlow(initialState)
     val state get() = _state as StateFlow<State>
@@ -38,7 +39,7 @@ abstract class MviViewModel<State : MviState, Intent : MviIntent>(
     fun handleIntent(intent: Intent) {
         jobLauncher.addToQueue {
             reduceState(intent)
-                .run { _state.update { this@run } }
+                .run { _state.update { currentState } }
         }
     }
 

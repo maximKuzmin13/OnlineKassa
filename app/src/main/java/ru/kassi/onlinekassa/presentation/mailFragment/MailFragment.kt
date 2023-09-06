@@ -15,12 +15,12 @@ import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
-class MailFragment: BaseFragment<EmptyNavArgs>() {
+class MailFragment: BaseFragment<EmptyNavArgs, MailState, MailIntent, MailViewModel>() {
 
 
     private val binding by viewBinding(FragmentMailBinding::bind)
 
-    private val viewModel: MailViewModel by viewModels()
+    override val viewModel: MailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

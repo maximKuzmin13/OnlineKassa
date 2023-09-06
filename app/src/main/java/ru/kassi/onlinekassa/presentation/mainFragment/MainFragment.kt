@@ -21,11 +21,11 @@ import ru.kassi.onlinekassa.presentation.mainFragment.adapter.NewsAdapter
 import ru.kassi.onlinekassa.presentation.mainFragment.adapter.PointsAdapter
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment<EmptyNavArgs>() {
+class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentIntent, MainFragmentViewModel>() {
 
     private val binding by viewBinding(FragmentMainBinding::bind)
 
-    private val viewModel: MainFragmentViewModel by viewModels()
+    override val viewModel: MainFragmentViewModel by viewModels()
 
     private lateinit var pointsAdapter: PointsAdapter
     private lateinit var newsAdapter: NewsAdapter

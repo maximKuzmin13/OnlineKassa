@@ -1,15 +1,20 @@
 package ru.kassi.onlinekassa.presentation.mainFragment
 
-import android.util.Log
-import com.google.firebase.remoteconfig.ktx.get
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.News
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
+import ru.kassi.onlinekassa.domain.AuthRepository
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.mainFragment.coordinator.MainFragmentCoordinator
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +23,11 @@ class MainFragmentViewModel @Inject constructor(
     private val resources: ResourceManager,
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase
-) : MviViewModel<MainFragmentState, MainFragmentIntent>(MainFragmentState()) {
+) : MviViewModel<EmptyNavArgs, MainFragmentState, MainFragmentIntent>(MainFragmentState()) {
+
+    init {
+
+    }
 
     fun goToProfile() {
         coordinator.goToProfile()
@@ -30,18 +39,16 @@ class MainFragmentViewModel @Inject constructor(
 
     fun getNewsList(): List<News> = remoteConfigUseCase.getNews().orEmpty()
 
-    override suspend fun reduceState(intent: MainFragmentIntent): MainFragmentState {
+    override suspend fun reduceState(intent: MainFragmentIntent) {
         return when (intent) {
-            MainFragmentIntent.Loading -> currentState
-            MainFragmentIntent.Start -> currentState
+            MainFragmentIntent.Loading -> {}
+            MainFragmentIntent.Start -> {}
             is MainFragmentIntent.PointClick -> {
                 coordinator.goToKassa(intent.pointId)
-                currentState
             }
 
             is MainFragmentIntent.NewsClick -> {
                 coordinator.goToWebView(intent.link)
-                currentState
             }
         }
     }

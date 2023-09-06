@@ -2,7 +2,9 @@ package ru.kassi.onlinekassa.presentation.pinFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +13,7 @@ import kotlinx.coroutines.withContext
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
+import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import javax.inject.Inject
@@ -21,7 +24,7 @@ class PinViewModel @Inject constructor(
     private val resources: ResourceManager,
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase
-) : MviViewModel<PinState, PinIntent>(PinState()) {
+) : MviViewModel<EmptyNavArgs, PinState, PinIntent>(PinState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
     val code = mutableListOf<String>()
@@ -35,10 +38,10 @@ class PinViewModel @Inject constructor(
         }
     }
 
-    override suspend fun reduceState(intent: PinIntent): PinState {
+    override suspend fun reduceState(intent: PinIntent) {
         return when (intent) {
-            PinIntent.Loading -> currentState
-            PinIntent.Start -> currentState
+            PinIntent.Loading -> {}
+            PinIntent.Start -> {}
         }
     }
 

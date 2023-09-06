@@ -18,11 +18,11 @@ import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment<EmptyNavArgs>() {
+class RegistrationFragment : BaseFragment<EmptyNavArgs, RegistrationState, RegistrationIntent, RegistrationViewModel>() {
 
     private val binding by viewBinding(FragmentRegistrationBinding::bind)
 
-    private val viewModel: RegistrationViewModel by viewModels()
+    override val viewModel: RegistrationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class RegistrationFragment : BaseFragment<EmptyNavArgs>() {
             password.setMaxLength(8)
             password.setImeOptions(EditorInfo.IME_ACTION_DONE)
             next.setText(R.string.next)
-            next.enable()
+            next.setState(true)
             next.onClick {
                 dispatchAction(RegistrationIntent.Next)
             }

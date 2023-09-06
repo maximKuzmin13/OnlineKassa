@@ -20,11 +20,11 @@ import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
-class PinFragment : BaseFragment<EmptyNavArgs>() {
+class PinFragment : BaseFragment<EmptyNavArgs, PinState, PinIntent, PinViewModel>() {
 
     private val binding by viewBinding(FragmentPinBinding::bind)
 
-    private val viewModel: PinViewModel by viewModels()
+    override val viewModel: PinViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

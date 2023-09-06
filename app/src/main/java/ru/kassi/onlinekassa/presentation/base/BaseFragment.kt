@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -13,6 +14,11 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.extentions.setStatusBarColor
 import ru.kassi.onlinekassa.loader.LoaderControllerDelegate
@@ -20,10 +26,16 @@ import ru.kassi.onlinekassa.loader.LoaderControllerViewData
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.DIMMER_DEFAULT_ALPHA
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.DIMMER_DEFAULT_COLOR
 import ru.kassi.onlinekassa.loader.LoaderControllerViewData.Companion.TOOLBAR_DEFAULT_HEIGHT
+import ru.kassi.onlinekassa.presentation.base.mvi.MviIntent
 import ru.kassi.onlinekassa.presentation.base.mvi.MviNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviState
+import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 
-open class BaseFragment<NavArgs>: Fragment {
+abstract class BaseFragment<NavArgs, State, Action, VM>: Fragment
+        where NavArgs : Parcelable,
+              State : MviState,
+              Action : MviIntent,
+              VM : MviViewModel<NavArgs, State, Action> {
 
     constructor() : super()
 
@@ -31,6 +43,8 @@ open class BaseFragment<NavArgs>: Fragment {
     companion object {
         const val INIT_ARGS_KEY = "INIT_ARGS"
     }
+
+    protected abstract val viewModel: VM
     protected val context: Context
         @JvmName("requireContextKtx") get() = requireContext()
 
@@ -42,6 +56,16 @@ open class BaseFragment<NavArgs>: Fragment {
         setHasOptionsMenu(true)
         updateLoader()
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        CoroutineScope(SupervisorJob()).launch {
+            viewModel.state.collect {
+                renderState(it)
+            }
+        }
+    }
+
     fun setLoader(
         isVisible: Boolean = false,
         isClickable: Boolean = false,
@@ -87,6 +111,8 @@ open class BaseFragment<NavArgs>: Fragment {
     fun initArgs(navArgs: MviNavArgs) {
         arguments?.putParcelable(INIT_ARGS_KEY, navArgs)
     }
+
+    protected open fun renderState(viewState: State) {}
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -40,7 +40,7 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
         with(holder as KassiViewHolder){
             with(binding) {
                 titleValue.text = point.title
-                adressValue.text = point.adress
+                adressValue.text = point.address
                 kassaValue.text = point.kassa
                 try {
                     SimpleDateFormat("dd.MM.yyyy").parse(point.term)
