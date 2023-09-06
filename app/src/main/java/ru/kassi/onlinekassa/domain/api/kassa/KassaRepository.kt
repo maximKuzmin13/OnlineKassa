@@ -23,7 +23,7 @@ class KassaRepository @Inject constructor(
             jsonAdapter.toJson(
                 KassaDto(
                     modul = "main",
-                    action = "salespointsListGet",
+                    action = "salespointInfoGet",
                     dbs = "app",
                     user = "mobile",
                     tnx = prefs.getString("tnx", null),

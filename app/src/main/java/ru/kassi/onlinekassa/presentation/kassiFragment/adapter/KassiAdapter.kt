@@ -5,13 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.ItemKassaBinding
+import ru.kassi.onlinekassa.domain.api.kassa.Kassa
+import ru.kassi.onlinekassa.domain.api.kassa.KassaData
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var data: List<Pair<String?, String?>> = emptyList()
+    var data: List<KassaData> = emptyList()
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
@@ -33,17 +36,19 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
         val point = data[position]
         with(holder as KassiViewHolder){
             with(binding) {
-                titleValue.text = "point.title"
-                adressValue.text = "point.address"
-                kassaValue.text = "point.kassa"
-                try {
-                    SimpleDateFormat("dd.MM.yyyy").parse(point.second.toString())
-                    term.text = binding.root.resources.getString(R.string.term, point.second)
+                titleValue.text = point.name
+                adressValue.text = point.address
+                val date = point.term.substringBefore("T")
+                val formattedDate = date.replace("-", ".")
+                val rightDate = try {
+                    val localdate = LocalDate.parse(formattedDate, DateTimeFormatter.ofPattern("yyyy.MM.dd"))
+                    localdate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
                 } catch (e: Exception) {
-                    term.text = point.second ?: ""
+                    formattedDate
                 }
-                serviceName.text = point.first
-                setColor(this, point.second ?: "")
+                term.text = binding.root.resources.getString(R.string.term, rightDate)
+                serviceName.text = point.service
+                setColor(this, rightDate.replace("-", "."))
                 root.setOnClickListener { listener.invoke() }
             }
         }
@@ -54,10 +59,10 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
         var background = R.drawable.item_border_default
         var textColor = R.color.borderColor
         try {
-            val date = SimpleDateFormat("dd.MM.yyyy").parse(date)
+            val dateD = SimpleDateFormat("yyyy.MM.dd").parse(date)
             val format = DateTimeFormatter.ofPattern("dd.MM.yyyy")
             val currentDate = SimpleDateFormat("dd.MM.yyyy").parse(LocalDateTime.now().format(format))
-            val diff: Long = currentDate.time - date.time
+            val diff: Long = currentDate.time - dateD.time
             val seconds = diff / 1000
             val minutes = seconds / 60
             val hours = minutes / 60

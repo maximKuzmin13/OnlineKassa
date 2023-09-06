@@ -7,5 +7,8 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class Kassa(
-    val info: Pair<String?, String?>
+    val name: String,
+    val address: String,
+    val OFD: String,
+    val FN: String
 ): Parcelable

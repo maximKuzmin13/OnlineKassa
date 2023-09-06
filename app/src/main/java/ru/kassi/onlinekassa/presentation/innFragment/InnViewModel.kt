@@ -31,16 +31,16 @@ class InnViewModel @Inject constructor(
         when (intent) {
             InnIntent.Back -> {}
             InnIntent.Loading -> {}
-            is InnIntent.Inn -> _state.value = currentState.copy(inn = intent.innS)
+            is InnIntent.Inn -> _state.value = currentState.copy(innS = intent.innS)
             InnIntent.Next -> checkInn()
         }
     }
 
     private fun checkInn() {
         viewModelScope.launch(handler) {
-            val inn = innRepository.checkInn(currentState.inn.orEmpty())
+            val inn = innRepository.checkInn(currentState.innS.orEmpty())
             if (inn.response.inn == 1) {
-                innCoordinator.goToAuth(currentState.inn.orEmpty())
+                innCoordinator.goToAuth(currentState.innS.orEmpty())
             } else {
                 innCoordinator.goToStart()
                 _errorToast.value = "ИНН не найден"

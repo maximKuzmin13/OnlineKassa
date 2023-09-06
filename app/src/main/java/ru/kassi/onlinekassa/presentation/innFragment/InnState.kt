@@ -4,5 +4,5 @@ import ru.kassi.onlinekassa.presentation.base.mvi.MviState
 
 data class InnState(
     val isLoading: Boolean = true,
-    val inn: String? = null
+    val innS: String? = null
 ) : MviState()

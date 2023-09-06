@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
-import ru.kassi.onlinekassa.databinding.FragmentLoginBinding
 import ru.kassi.onlinekassa.databinding.FragmentMailBinding
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
-import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
 class MailFragment: BaseFragment<EmptyNavArgs, MailState, MailIntent, MailViewModel>() {
@@ -44,6 +42,15 @@ class MailFragment: BaseFragment<EmptyNavArgs, MailState, MailIntent, MailViewMo
                 onClick {
                     dispatchAction(MailIntent.Negative)
                 }
+            }
+        }
+    }
+
+    override fun renderState(viewState: MailState) {
+        super.renderState(viewState)
+        with(viewState){
+            with(binding){
+                mail.text = mailData
             }
         }
     }

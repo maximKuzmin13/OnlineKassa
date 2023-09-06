@@ -1,10 +1,12 @@
 package ru.kassi.onlinekassa.presentation.innFragment
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +35,7 @@ class InnFragment: BaseFragment<EmptyNavArgs, InnState, InnIntent, InnViewModel>
         super.onViewCreated(view, savedInstanceState)
         with(binding){
             inn.setHint(R.string.inn)
+            inn.setInputType(InputType.TYPE_CLASS_NUMBER)
             next.setText(R.string.next)
             next.onClick {
                 dispatchIntent(InnIntent.Next)
@@ -47,6 +50,7 @@ class InnFragment: BaseFragment<EmptyNavArgs, InnState, InnIntent, InnViewModel>
         super.renderState(viewState)
         with(viewState){
             with(binding){
+                next.setState(innS?.isNotEmpty() == true)
                 inn.editText.doAfterTextChanged {
                     dispatchIntent(InnIntent.Inn(it.toString()))
                 }

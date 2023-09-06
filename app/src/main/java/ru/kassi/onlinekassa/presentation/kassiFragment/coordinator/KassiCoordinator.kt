@@ -4,7 +4,7 @@ interface KassiCoordinator {
 
     fun goToMain()
 
-    fun goToPdf()
+    fun goToPdf(num: String)
 
     fun exit()
 }

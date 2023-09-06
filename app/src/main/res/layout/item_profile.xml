@@ -20,6 +20,7 @@
             android:layout_width="@dimen/dimens_250_dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
+            android:layout_marginVertical="@dimen/dimens_16_dp"
             android:layout_marginHorizontal="@dimen/dimens_16_dp"
             android:layout_weight="1" />
 
@@ -28,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
+            android:layout_marginVertical="@dimen/dimens_16_dp"
             android:layout_marginHorizontal="@dimen/dimens_16_dp"
             android:layout_weight="1" />
     </LinearLayout>

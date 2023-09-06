@@ -9,7 +9,6 @@ class PinCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router,
 ) : PinCoordinator {
     override fun goToMain() {
-        router.finishChain()
         router.newRootChain(Screens.MainScreen())
     }
 

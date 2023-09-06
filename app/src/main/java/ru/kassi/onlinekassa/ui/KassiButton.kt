@@ -30,7 +30,7 @@ open class KassiButton @JvmOverloads constructor(
         Looper.myLooper()?.let {
             android.os.Handler(it).postDelayed({
                 binding.button.isEnabled = isEnabled
-            }, 200)
+            }, 50)
         }
         if (isEnabled) {
             binding.button.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_button_enabled))

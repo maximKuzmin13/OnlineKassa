@@ -24,8 +24,10 @@ class PdfViewModel @Inject constructor(
             PdfIntent.Loading -> {}
             PdfIntent.Start -> {}
             PdfIntent.Back -> {
-                coordinator.backToKassi("0")
+                coordinator.backToKassi(currentState.num ?: "0")
             }
+
+            is PdfIntent.Num -> _state.value = currentState.copy(num = intent.num)
         }
     }
 }

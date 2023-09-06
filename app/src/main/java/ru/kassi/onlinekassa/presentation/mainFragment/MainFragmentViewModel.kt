@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.News
 import ru.kassi.onlinekassa.data.ResourceManager
@@ -66,6 +67,7 @@ class MainFragmentViewModel @Inject constructor(
 
     fun getProfile(){
         viewModelScope.launch(handler){
+            delay(100)
             val userName = profileRepository.getProfile().response.fio
             val temp = userName.substringAfter(" ")
             val name = temp.substringBefore(" ")

@@ -1,5 +1,6 @@
 package ru.kassi.onlinekassa.presentation.kassiFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,13 +52,13 @@ class KassiFragment : BaseFragment<KassaNavArgs, KassiState, KassiIntent, KassiV
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dispatchIntent(KassiIntent.Num(navArgs.num))
         binding.toolbarInclude.toolbar.title = "Сервисы"
         binding.toolbarInclude.toolbar.setNavigationIcon(ru.kassi.onlinekassa.R.drawable.ic_back)
         binding.toolbarInclude.toolbar.setNavigationOnClickListener {
             dispatchIntent(KassiIntent.Back)
         }
         binding.recycler.adapter = adapter
-        dispatchIntent(KassiIntent.Num(navArgs.num))
     }
 
     override fun renderState(viewState: KassiState) {

@@ -9,4 +9,6 @@ sealed class PdfIntent : MviIntent {
     object Loading: PdfIntent()
 
     object Back: PdfIntent()
+
+    data class Num(val num: String): PdfIntent()
 }

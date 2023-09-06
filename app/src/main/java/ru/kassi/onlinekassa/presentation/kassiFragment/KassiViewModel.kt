@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
+import ru.kassi.onlinekassa.domain.api.kassa.KassaData
 import ru.kassi.onlinekassa.domain.api.kassa.KassaRepository
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
@@ -23,9 +24,6 @@ class KassiViewModel @Inject constructor(
 ) : MviViewModel<KassaNavArgs, KassiState, KassiIntent>(KassiState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
-    init {
-        loadKassaInfo()
-    }
     override suspend fun reduceState(intent: KassiIntent) {
         return when (intent) {
             KassiIntent.Loading -> {}
@@ -36,22 +34,51 @@ class KassiViewModel @Inject constructor(
             KassiIntent.LoadPdf -> {
                 loadPdf()
             }
-            is KassiIntent.Num -> _state.value = currentState.copy(num = intent.num)
+            is KassiIntent.Num -> {
+                _state.value = currentState.copy(num = intent.num)
+                loadKassaInfo()
+            }
         }
     }
 
     fun loadKassaInfo() {
         viewModelScope.launch {
-            val a = kassaRepository.getKassaInfo(currentState.num.orEmpty()).response
+            val kassa = kassaRepository.getKassaInfo(currentState.num.orEmpty()).response
+            print(kassa)
+            val list = mutableListOf<KassaData>()
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = "ФН",
+                    term = kassa.FN
+                ),
+            )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = "ОФД",
+                    term = kassa.OFD
+                ),
+            )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = "ФН",
+                    term = kassa.FN
+                ),
+            )
             _state.value = currentState.copy(
-                kassaList = a
+                kassaList = list
             )
         }
     }
 
     fun loadPdf() {
         viewModelScope.launch {
-            kassiCoordinator.goToPdf()
+            kassiCoordinator.goToPdf(currentState.num ?: "0")
         }
     }
 }

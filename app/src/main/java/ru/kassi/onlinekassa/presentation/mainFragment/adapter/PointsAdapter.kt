@@ -28,7 +28,7 @@ class PointsAdapter(val listener: (Int)-> Unit): RecyclerView.Adapter<PointsAdap
         with(holder.binding){
             titleValue.text = point.name
             adressValue.text = point.adress
-            kassaValue.text = ""
+            kassaValue.text = point.registerName
             root.setOnClickListener {
                 listener.invoke(point.num)
             }

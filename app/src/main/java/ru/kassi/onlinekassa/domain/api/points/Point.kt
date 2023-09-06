@@ -9,5 +9,6 @@ import kotlinx.parcelize.Parcelize
 data class Point(
     val num: Int,
     val name: String,
-    val adress: String
+    val adress: String,
+    val registerName: String
 ): Parcelable

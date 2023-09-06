@@ -47,7 +47,6 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.toolbarInclude.rightIcon.background = getDrawable(R.drawable.ic_profile)
         binding.toolbarInclude.rightIcon.scaleType = ImageView.ScaleType.CENTER_INSIDE
         binding.toolbarInclude.rightIcon.setOnClickListener {
@@ -67,10 +66,10 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
         super.renderState(viewState)
         with(viewState){
             with(binding){
+                pointsAdapter.data = pointList
                 userName?.let {
                     toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, it)
                 }
-                pointsAdapter.data = pointList
             }
         }
     }
