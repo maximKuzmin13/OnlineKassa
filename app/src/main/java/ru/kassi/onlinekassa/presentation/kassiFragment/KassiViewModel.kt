@@ -44,7 +44,6 @@ class KassiViewModel @Inject constructor(
     fun loadKassaInfo() {
         viewModelScope.launch {
             val kassa = kassaRepository.getKassaInfo(currentState.num.orEmpty()).response
-            print(kassa)
             val list = mutableListOf<KassaData>()
             list.add(
                 KassaData(
@@ -66,12 +65,29 @@ class KassiViewModel @Inject constructor(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = "ФН",
-                    term = kassa.FN
+                    service = "Дримкас КЛЮЧ, Атол-Сервис",
+                    term = kassa.Kluch
                 ),
             )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = "Дримкас СТАРТ, Фронтол, Модуль Эвотор, Сигма, МТС",
+                    term = kassa.Start
+                ),
+            )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = "поверка весов",
+                    term = kassa.poverka
+                ),
+            )
+            list.removeIf { it.term.isNullOrEmpty() }
             _state.value = currentState.copy(
-                kassaList = list
+                kassaList = list.toList()
             )
         }
     }

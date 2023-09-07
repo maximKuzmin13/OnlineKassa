@@ -6,5 +6,6 @@ import com.squareup.moshi.JsonClass
 data class News(
     val title: String,
     val desc: String,
-    val link: String
+    val link: String,
+    val imageLink: String
 )

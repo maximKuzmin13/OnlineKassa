@@ -1,8 +1,10 @@
 package ru.kassi.onlinekassa.presentation.mainFragment.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import ru.kassi.onlinekassa.data.News
 import ru.kassi.onlinekassa.data.Point
 import ru.kassi.onlinekassa.databinding.ItemNewsBinding
@@ -30,6 +32,10 @@ class NewsAdapter(val listener: (String)-> Unit): RecyclerView.Adapter<NewsAdapt
         with(holder.binding){
             title.text = news.title
             desc.text = news.desc
+            if (news.imageLink.isNotEmpty()) {
+                image.visibility = View.VISIBLE
+                image.load(news.imageLink)
+            }
             root.setOnClickListener {
                 listener.invoke(news.link)
             }

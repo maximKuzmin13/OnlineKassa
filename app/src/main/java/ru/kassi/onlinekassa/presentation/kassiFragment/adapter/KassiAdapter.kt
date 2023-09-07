@@ -38,8 +38,8 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
             with(binding) {
                 titleValue.text = point.name
                 adressValue.text = point.address
-                val date = point.term.substringBefore("T")
-                val formattedDate = date.replace("-", ".")
+                val date = point.term?.substringBefore("T")
+                val formattedDate = date?.replace("-", ".")
                 val rightDate = try {
                     val localdate = LocalDate.parse(formattedDate, DateTimeFormatter.ofPattern("yyyy.MM.dd"))
                     localdate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"))
@@ -48,7 +48,7 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
                 }
                 term.text = binding.root.resources.getString(R.string.term, rightDate)
                 serviceName.text = point.service
-                setColor(this, rightDate.replace("-", "."))
+                setColor(this, rightDate?.replace("-", ".").toString())
                 root.setOnClickListener { listener.invoke() }
             }
         }
