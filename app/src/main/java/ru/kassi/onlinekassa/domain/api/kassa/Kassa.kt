@@ -10,8 +10,9 @@ data class Kassa(
     val name: String,
     val address: String,
     val Kluch: String,
-    val Start: String,
-    val poverka: String,
+    val modelKKT: String,
+    val modelFN: String,
+    val nameOFD: String,
     val OFD: String,
     val FN: String
 ): Parcelable

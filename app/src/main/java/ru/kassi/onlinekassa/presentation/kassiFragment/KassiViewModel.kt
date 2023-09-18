@@ -49,7 +49,7 @@ class KassiViewModel @Inject constructor(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = "ФН",
+                    service = kassa.modelFN,
                     term = kassa.FN
                 ),
             )
@@ -57,7 +57,7 @@ class KassiViewModel @Inject constructor(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = "ОФД",
+                    service = kassa.nameOFD,
                     term = kassa.OFD
                 ),
             )
@@ -65,24 +65,8 @@ class KassiViewModel @Inject constructor(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = "Дримкас КЛЮЧ, Атол-Сервис",
+                    service = kassa.modelKKT,
                     term = kassa.Kluch
-                ),
-            )
-            list.add(
-                KassaData(
-                    name = kassa.name,
-                    address = kassa.address,
-                    service = "Дримкас СТАРТ, Фронтол, Модуль Эвотор, Сигма, МТС",
-                    term = kassa.Start
-                ),
-            )
-            list.add(
-                KassaData(
-                    name = kassa.name,
-                    address = kassa.address,
-                    service = "поверка весов",
-                    term = kassa.poverka
                 ),
             )
             list.removeIf { it.term.isNullOrEmpty() }
