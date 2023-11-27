@@ -9,6 +9,6 @@ class AuthCoordinatorImpl @Inject constructor(
     @MainNavigation private val router: Router,
 ): AuthCoordinator {
     override fun goToMail() {
-        router.newRootChain(Screens.MailScreen())
+        router.newRootChain(Screens.MainScreen())
     }
 }

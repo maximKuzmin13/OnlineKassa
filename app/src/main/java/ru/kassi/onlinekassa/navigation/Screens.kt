@@ -22,8 +22,11 @@ object Screens {
     fun MainScreen() = FragmentScreen { MainFragment() }
 
     fun LoginScreen() = FragmentScreen { LoginFragment() }
+
     fun AuthScreen(inn: String) = FragmentScreen { AuthFragment.newInstance(AuthNavArgs(inn)) }
+
     fun RegisterScreen() = FragmentScreen { RegistrationFragment() }
+
     fun InnScreen() = FragmentScreen { InnFragment() }
 
     fun MailScreen() = FragmentScreen { MailFragment() }
@@ -34,7 +37,7 @@ object Screens {
 
     fun PinScreen() = FragmentScreen { PinFragment() }
 
-    fun PdfScreen(num: String) = FragmentScreen { PdfFragment.newInstance(PdfNavArgs(num)) }
+    fun PdfScreen(model: String, type: Boolean?, num: String) = FragmentScreen { PdfFragment.newInstance(PdfNavArgs(model, type, num)) }
 
     fun WebviewScreen(link: String) = FragmentScreen { WebViewFragment.newInstance(WebviewNavArgs(link))}
 }

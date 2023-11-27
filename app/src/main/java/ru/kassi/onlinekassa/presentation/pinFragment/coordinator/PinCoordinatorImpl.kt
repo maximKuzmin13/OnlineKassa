@@ -12,6 +12,10 @@ class PinCoordinatorImpl @Inject constructor(
         router.newRootChain(Screens.MainScreen())
     }
 
+    override fun goToLogin() {
+        router.newRootChain(Screens.LoginScreen())
+    }
+
     override fun exit() {
         router.exit()
     }

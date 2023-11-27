@@ -1,16 +1,20 @@
 package ru.kassi.onlinekassa.presentation.singleActivity
 
 import android.content.ContentValues.TAG
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import com.google.firebase.remoteconfig.ktx.remoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.zxing.BinaryBitmap
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.NotFoundException
+import com.google.zxing.RGBLuminanceSource
+import com.google.zxing.common.HybridBinarizer
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.di.ViewModelFactory
@@ -18,7 +22,9 @@ import ru.kassi.onlinekassa.navigation.MainActivityNavigator
 import ru.kassi.onlinekassa.navigation.MainNavigation
 import ru.kassi.onlinekassa.navigation.StartUpCoordinator
 import ru.kassi.onlinekassa.presentation.base.BaseActivity
+import java.io.FileNotFoundException
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class SingleActivity : BaseActivity() {

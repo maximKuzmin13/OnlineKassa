@@ -1,5 +1,6 @@
 package ru.kassi.onlinekassa.presentation.pinFragment
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
+import ru.kassi.onlinekassa.di.UserDataQualifier
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
@@ -23,7 +25,8 @@ class PinViewModel @Inject constructor(
     private val coordinator: PinCoordinator,
     private val resources: ResourceManager,
     @IoDispatcher dispatcher: CoroutineDispatcher,
-    private val remoteConfigUseCase: FetchRemoteConfigUseCase
+    private val remoteConfigUseCase: FetchRemoteConfigUseCase,
+    @UserDataQualifier private val prefs: SharedPreferences,
 ) : MviViewModel<EmptyNavArgs, PinState, PinIntent>(PinState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
@@ -34,6 +37,7 @@ class PinViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            handleAuth()
             remoteConfigUseCase.reload()
         }
     }
@@ -59,6 +63,11 @@ class PinViewModel @Inject constructor(
             code.removeLast()
         }
         _codeSize.postValue(code.size)
+    }
+
+    fun handleAuth() {
+        val token = prefs.getString("tnx", null)
+        if (token.isNullOrEmpty()) coordinator.goToLogin()
     }
 
     fun authorised() {

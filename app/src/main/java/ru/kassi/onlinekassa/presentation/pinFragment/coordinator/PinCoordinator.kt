@@ -4,5 +4,7 @@ interface PinCoordinator {
 
     fun goToMain()
 
+    fun goToLogin()
+
     fun exit()
 }

@@ -14,8 +14,8 @@ class KassiCoordinatorImpl @Inject constructor(
         router.navigateTo(Screens.MainScreen())
     }
 
-    override fun goToPdf(num: String) {
-        router.navigateTo(Screens.PdfScreen(num))
+    override fun goToPdf(model: String, type: Boolean?, num: String) {
+        router.navigateTo(Screens.PdfScreen(model, type, num))
     }
 
     override fun exit() {

@@ -9,6 +9,6 @@ class StartUpCoordinatorImpl @Inject constructor(
 ): StartUpCoordinator {
 
     override fun goToMainOrAuth() {
-        router.newChain(Screens.LoginScreen())
+        router.newChain(Screens.PinScreen())
     }
 }

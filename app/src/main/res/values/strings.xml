@@ -8,4 +8,5 @@
     <string name="register">Зарегистрироваться</string>
     <string name="common_greeting_title" formatted="false">Добрый день, %s</string>
     <string name="term" formatted="false">до %s</string>
+    <string name="mail" formatted="false">Получить счет по эл. почте</string>
 </resources>

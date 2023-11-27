@@ -8,5 +8,7 @@ import ru.kassi.onlinekassa.presentation.base.mvi.MviNavArgs
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class PdfNavArgs(
+    val model: String,
+    val type: Boolean?,
     val num: String
 ): Parcelable, MviNavArgs

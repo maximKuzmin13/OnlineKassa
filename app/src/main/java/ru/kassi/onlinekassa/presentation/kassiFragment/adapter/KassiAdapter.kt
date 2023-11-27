@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kassi.onlinekassa.R
+import ru.kassi.onlinekassa.data.ModelData
 import ru.kassi.onlinekassa.databinding.ItemKassaBinding
 import ru.kassi.onlinekassa.domain.api.kassa.Kassa
 import ru.kassi.onlinekassa.domain.api.kassa.KassaData
@@ -12,7 +13,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class KassiAdapter(val listener: (ModelData?) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var data: List<KassaData> = emptyList()
         set(newValue) {
@@ -46,10 +47,10 @@ class KassiAdapter(val listener: () -> Unit): RecyclerView.Adapter<RecyclerView.
                 } catch (e: Exception) {
                     formattedDate
                 }
-                term.text = binding.root.resources.getString(R.string.term, rightDate)
+                term.text = rightDate?.let { binding.root.resources.getString(R.string.term, it) }
                 serviceName.text = point.service
                 setColor(this, rightDate?.replace("-", ".").toString())
-                root.setOnClickListener { listener.invoke() }
+                root.setOnClickListener { listener.invoke(point.service?.let { it1 -> ModelData(it1, point.kind) }) }
             }
         }
 

@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class Profile(
-    val inn: Int,
+    val inn: String,
     val fio: String,
     val mail: String
 ): Parcelable

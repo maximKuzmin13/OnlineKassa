@@ -1,22 +1,19 @@
 package ru.kassi.onlinekassa.presentation.kassiFragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ru.kassi.onlinekassa.data.KassiMockData
+import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.FragmentKassiBinding
 import ru.kassi.onlinekassa.extentions.args
 import ru.kassi.onlinekassa.extentions.withArgs
-import ru.kassi.onlinekassa.presentation.authFragment.AuthFragment
-import ru.kassi.onlinekassa.presentation.authFragment.AuthNavArgs
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
-import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
 import ru.kassi.onlinekassa.presentation.kassiFragment.adapter.KassiAdapter
+import ru.kassi.onlinekassa.presentation.kassiFragment.adapter.SpacesItemDecoration
 
 
 @AndroidEntryPoint
@@ -45,20 +42,23 @@ class KassiFragment : BaseFragment<KassaNavArgs, KassiState, KassiIntent, KassiV
         savedInstanceState: Bundle?
     ): View? {
         adapter = KassiAdapter {
-            dispatchIntent(KassiIntent.LoadPdf)
+            dispatchIntent(KassiIntent.LoadPdf(it))
         }
-        return inflater.inflate(ru.kassi.onlinekassa.R.layout.fragment_kassi, container, false)
+        return inflater.inflate(R.layout.fragment_kassi, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dispatchIntent(KassiIntent.Num(navArgs.num))
         binding.toolbarInclude.toolbar.title = "Сервисы"
-        binding.toolbarInclude.toolbar.setNavigationIcon(ru.kassi.onlinekassa.R.drawable.ic_back)
+        binding.toolbarInclude.toolbar.setNavigationIcon(R.drawable.ic_back)
         binding.toolbarInclude.toolbar.setNavigationOnClickListener {
             dispatchIntent(KassiIntent.Back)
         }
         binding.recycler.adapter = adapter
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
+        val spacesItemDecoration = SpacesItemDecoration(spacingInPixels)
+        binding.recycler.addItemDecoration(spacesItemDecoration)
     }
 
     override fun renderState(viewState: KassiState) {

@@ -19,6 +19,7 @@
     <dimen name="dimens_156_dp">156dp</dimen>
     <dimen name="dimens_200_dp">200dp</dimen>
     <dimen name="dimens_250_dp">250dp</dimen>
+    <dimen name="spacing">8dp</dimen>
 
     <dimen name="dimens_10_sp">10sp</dimen>
     <dimen name="dimens_12_sp">12sp</dimen>

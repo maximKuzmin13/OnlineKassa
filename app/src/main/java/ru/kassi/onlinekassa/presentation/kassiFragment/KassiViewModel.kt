@@ -6,6 +6,7 @@ import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import ru.kassi.onlinekassa.data.ModelData
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
 import ru.kassi.onlinekassa.domain.api.kassa.KassaData
@@ -31,8 +32,8 @@ class KassiViewModel @Inject constructor(
             KassiIntent.Back -> {
                 kassiCoordinator.goToMain()
             }
-            KassiIntent.LoadPdf -> {
-                loadPdf()
+            is KassiIntent.LoadPdf -> {
+                loadPdf(intent.modelData)
             }
             is KassiIntent.Num -> {
                 _state.value = currentState.copy(num = intent.num)
@@ -49,24 +50,49 @@ class KassiViewModel @Inject constructor(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = kassa.modelFN,
-                    term = kassa.FN
+                    service = kassa.FNmodel,
+                    term = kassa.FNdate,
+                    kind = kassa.FNtype != "Нет"
                 ),
             )
             list.add(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = kassa.nameOFD,
-                    term = kassa.OFD
+                    service = kassa.OFDname,
+                    term = kassa.OFDdate,
+                    kind = when (kassa.OFDpin) {
+                        "15 мес" -> false
+                        "36 мес" -> true
+                        else -> null
+                    }
                 ),
             )
             list.add(
                 KassaData(
                     name = kassa.name,
                     address = kassa.address,
-                    service = kassa.modelKKT,
-                    term = kassa.Kluch
+                    service = kassa.CassPO,
+                    term = kassa.CassPOdate,
+                    kind = null
+                ),
+            )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = kassa.CassPOobnovl,
+                    term = kassa.CassPOobnovlDate,
+                    kind = null
+                ),
+            )
+            list.add(
+                KassaData(
+                    name = kassa.name,
+                    address = kassa.address,
+                    service = kassa.tovaroUch,
+                    term = kassa.tovaroUchDate,
+                    kind = null
                 ),
             )
             list.removeIf { it.term.isNullOrEmpty() }
@@ -76,9 +102,9 @@ class KassiViewModel @Inject constructor(
         }
     }
 
-    fun loadPdf() {
+    fun loadPdf(modelData: ModelData?) {
         viewModelScope.launch {
-            kassiCoordinator.goToPdf(currentState.num ?: "0")
+            kassiCoordinator.goToPdf(modelData?.model.orEmpty(), modelData?.type, currentState.num ?: "0")
         }
     }
 }

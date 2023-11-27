@@ -1,5 +1,6 @@
 package ru.kassi.onlinekassa.presentation.mainFragment
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.News
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
+import ru.kassi.onlinekassa.di.UserDataQualifier
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
 import ru.kassi.onlinekassa.domain.api.points.PointRepository
 import ru.kassi.onlinekassa.domain.api.profile.ProfileRepository
@@ -26,7 +28,7 @@ class MainFragmentViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
     private val resources: ResourceManager,
     @IoDispatcher dispatcher: CoroutineDispatcher,
-    private val remoteConfigUseCase: FetchRemoteConfigUseCase
+    private val remoteConfigUseCase: FetchRemoteConfigUseCase,
 ) : MviViewModel<EmptyNavArgs, MainFragmentState, MainFragmentIntent>(MainFragmentState()) {
 
     val _errorToast: MutableLiveData<String> = MutableLiveData()

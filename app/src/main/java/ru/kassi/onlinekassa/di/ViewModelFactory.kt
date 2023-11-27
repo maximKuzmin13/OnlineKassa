@@ -1,5 +1,6 @@
 package ru.kassi.onlinekassa.di
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -28,7 +29,8 @@ class ViewModelFactory @Inject constructor(
     private val pointRepository: PointRepository,
     private val profileRepository: ProfileRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-    private val remoteConfigUseCase: FetchRemoteConfigUseCase
+    private val remoteConfigUseCase: FetchRemoteConfigUseCase,
+    @UserDataQualifier private val prefs: SharedPreferences
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -40,7 +42,7 @@ class ViewModelFactory @Inject constructor(
                     dispatcher = ioDispatcher,
                     remoteConfigUseCase = remoteConfigUseCase,
                     pointRepository = pointRepository,
-                    profileRepository = profileRepository
+                    profileRepository = profileRepository,
                 )
             }
             LoginViewModel::class.java -> {

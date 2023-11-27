@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class KassaData(
     val name: String,
     val address: String,
-    val service: String,
-    val term: String?
+    val service: String?,
+    val term: String?,
+    val kind: Boolean?
 ): Parcelable
