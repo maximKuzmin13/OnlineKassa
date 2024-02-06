@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.di.IoDispatcher
@@ -20,7 +22,7 @@ class ProfileViewModel @Inject constructor(
     private val profileCoordinator: ProfileCoordinator,
     private val profileRepository: ProfileRepository,
     private val resources: ResourceManager,
-    @IoDispatcher dispatcher: CoroutineDispatcher,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : MviViewModel<EmptyNavArgs, ProfileState, ProfileIntent>(ProfileState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
@@ -39,17 +41,20 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getProfileData() {
-        viewModelScope.launch{
-            val profile = profileRepository.getProfile().response
+        viewModelScope.launch(
+            SupervisorJob() + 
+                    dispatcher +
+                    CoroutineExceptionHandler { _, _ ->  }) {
+            val profile = profileRepository.getProfile()?.response
             val list = mutableListOf<ru.kassi.onlinekassa.data.Profile>()
             list.add(ru.kassi.onlinekassa.data.Profile(
-                Pair("ИНН", profile.inn.toString())
+                Pair("ИНН", profile?.inn.toString())
             ))
             list.add(ru.kassi.onlinekassa.data.Profile(
-                Pair("ФИО", profile.fio)
+                Pair("ФИО", profile?.fio)
             ))
             list.add(ru.kassi.onlinekassa.data.Profile(
-                Pair("Почта", profile.mail)
+                Pair("Почта", profile?.mail)
             ))
             _state.value = currentState.copy(
                 profile = list

@@ -10,6 +10,7 @@ import ru.kassi.onlinekassa.domain.api.Headers
 import ru.kassi.onlinekassa.domain.api.Request
 import ru.kassi.onlinekassa.domain.api.TestDto
 import ru.kassi.onlinekassa.domain.api.TestRq
+import ru.kassi.onlinekassa.network.UserNotFoundException
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
@@ -46,8 +47,9 @@ class AuthRepository @Inject constructor(
                 )
             )
         )
+        val token = response.response?.tnx ?: throw UserNotFoundException()
         prefs.edit().putString("inn", inn).apply()
-        prefs.edit().putString("tnx", response.response.tnx).apply()
+        prefs.edit().putString("tnx", token).apply()
     }
 
     suspend fun auth(login: String, inn: String, pass: String) = withContext(Dispatchers.IO) {
@@ -75,6 +77,6 @@ class AuthRepository @Inject constructor(
             )
         )
         prefs.edit().putString("inn", inn).apply()
-        prefs.edit().putString("tnx", response.response.tnx).apply()
+        prefs.edit().putString("tnx", response.response?.tnx).apply()
     }
 }

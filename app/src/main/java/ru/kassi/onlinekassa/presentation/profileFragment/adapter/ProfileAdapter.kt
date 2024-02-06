@@ -8,7 +8,7 @@ import ru.kassi.onlinekassa.databinding.ItemProfileBinding
 
 class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
 
-    var data: List<Profile> = emptyList()
+    var data: List<Profile?> = emptyList()
         set(newValue) {
             field = newValue
             notifyDataSetChanged()
@@ -26,8 +26,8 @@ class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
         val point = data[position]
         with(holder.binding){
-            title.text = point.text.first
-            text.text = point.text.second
+            title.text = point?.text?.first
+            text.text = point?.text?.second
         }
     }
 

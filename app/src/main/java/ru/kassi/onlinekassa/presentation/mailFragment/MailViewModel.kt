@@ -43,7 +43,7 @@ class MailViewModel @Inject constructor(
     fun getMail() {
         viewModelScope.launch {
             _state.value = currentState.copy(
-                mailData = profileRepository.getProfile().response.mail
+                mailData = profileRepository.getProfile()?.response?.mail
             )
         }
     }

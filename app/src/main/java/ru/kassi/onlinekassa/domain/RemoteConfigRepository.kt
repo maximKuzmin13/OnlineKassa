@@ -10,12 +10,6 @@ class RemoteConfigRepository @Inject constructor() {
 
     fun getInstance() = remoteConfig
 
-    fun fetchConfig() = remoteConfig.fetch()
-
-    fun getFullConfig() = remoteConfig.all
-
-    fun activateConfig() = remoteConfig.activate()
-
     suspend fun reload() = suspendCoroutine { cont ->
         remoteConfig
             .fetch(5L)

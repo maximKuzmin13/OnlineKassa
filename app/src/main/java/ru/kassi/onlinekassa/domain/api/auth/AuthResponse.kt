@@ -9,5 +9,5 @@ import ru.kassi.onlinekassa.domain.api.TokenResponse
 @Parcelize
 data class AuthResponse(
     val status: String,
-    val response: TokenResponse
+    val response: TokenResponse?
 ): Parcelable

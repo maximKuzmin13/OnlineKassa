@@ -7,6 +7,6 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class TokenResponse(
-    val tnx: String,
+    val tnx: String?,
     val userid: String?
 ): Parcelable

@@ -5,5 +5,5 @@ import ru.kassi.onlinekassa.presentation.base.mvi.MviState
 
 data class ProfileState(
     val isLoading: Boolean = true,
-    val profile: List<Profile> = emptyList()
+    val profile: List<Profile?> = emptyList()
 ) : MviState()

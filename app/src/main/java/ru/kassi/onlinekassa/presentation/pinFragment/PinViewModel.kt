@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,6 +19,7 @@ import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,9 +36,12 @@ class PinViewModel @Inject constructor(
 
     val _codeSize: MutableLiveData<Int> = MutableLiveData()
     val codeSize: LiveData<Int> = _codeSize
+    private val handler = CoroutineExceptionHandler { _, throwable ->
+        handleError(throwable)
+    }
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             handleAuth()
             remoteConfigUseCase.reload()
         }
@@ -68,6 +73,10 @@ class PinViewModel @Inject constructor(
     fun handleAuth() {
         val token = prefs.getString("tnx", null)
         if (token.isNullOrEmpty()) coordinator.goToLogin()
+    }
+
+    fun handleError(throwable: Throwable) {
+        print(throwable)
     }
 
     fun authorised() {

@@ -11,8 +11,6 @@ class FetchRemoteConfigUseCase @Inject constructor(
     private val moshi: Moshi
 ) {
 
-    fun fetch() = remoteConfigRepository.fetchConfig()
-
     fun getNews() : List<News>? {
         val newsListType = Types.newParameterizedType(MutableList::class.java, News::class.java)
         val newsAdapter = moshi.adapter<List<News>>(newsListType)

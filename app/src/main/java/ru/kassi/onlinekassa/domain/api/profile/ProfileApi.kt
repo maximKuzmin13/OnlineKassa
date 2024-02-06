@@ -8,5 +8,5 @@ interface ProfileApi {
     @POST("api/ApiTrying")
     suspend fun getProfile(
         @Query("rq") rq: String?
-    ): ProfileResponse
+    ): ProfileResponse?
 }

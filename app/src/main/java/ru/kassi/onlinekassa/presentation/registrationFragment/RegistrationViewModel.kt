@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.domain.api.auth.AuthRepository
+import ru.kassi.onlinekassa.network.UserNotFoundException
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import javax.inject.Inject
@@ -49,6 +50,9 @@ class RegistrationViewModel @Inject constructor(
     }
 
     private fun handleError(e: Throwable) {
-        _errorToast.value = e.message
+        when (e) {
+            is UserNotFoundException -> _errorToast.value = "Пользователь не найден в базе"
+            else -> _errorToast.value = e.message
+        }
     }
 }
