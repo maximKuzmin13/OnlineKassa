@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425752265614",
+    "project_id": "onlinekassa-89d87",
+    "storage_bucket": "onlinekassa-89d87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425752265614:android:3b47b60c870fbe386d5adf",
+        "android_client_info": {
+          "package_name": "ru.kassi.onlinekassa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425752265614-3l2o0v1n7hu8vjhqt5palputckp2v79s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClvCkIry5qeVZnJlARloY5uRcczg4bo_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425752265614-3l2o0v1n7hu8vjhqt5palputckp2v79s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

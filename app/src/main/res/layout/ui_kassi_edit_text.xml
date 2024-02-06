@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/kassi_edit_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="@dimen/dimens_4_dp"
+        android:layout_marginBottom="@dimen/dimens_12_dp"
+        android:background="@drawable/bg_edit_text"
+        android:focusable="true"
+        android:gravity="center"
+        android:outlineAmbientShadowColor="@color/textPrimary"
+        android:outlineSpotShadowColor="@color/textPrimary"
+        android:translationZ="8dp"
+        app:hintTextColor="@color/edit_text_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/kassi_edit_text_input"
+            style="@style/Text.Bold.16sp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_48_dp"
+            android:cursorVisible="false"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/dimens_16_dp"
+            android:textColor="@color/textPrimary"
+            android:textColorHint="@color/textPrimary"
+            android:textFontWeight="600"
+            android:textSize="@dimen/dimens_16_sp"
+            tools:text="Text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

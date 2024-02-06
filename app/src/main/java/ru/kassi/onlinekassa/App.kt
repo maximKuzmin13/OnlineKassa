@@ -1,24 +1,18 @@
 package ru.kassi.onlinekassa
 
 import android.app.Application
-import me.vponomarenko.injectionmanager.IHasComponent
-import me.vponomarenko.injectionmanager.x.XInjectionManager
-import ru.kassi.onlinekassa.di.ApplicationComponent
-import ru.kassi.onlinekassa.di.DaggerApplicationComponent
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
+import dagger.hilt.android.HiltAndroidApp
 
-class App: Application(), IHasComponent<ApplicationComponent> {
+
+@HiltAndroidApp
+class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initDagger()
+        val builder = VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
     }
 
-    override fun getComponent(): ApplicationComponent = DaggerApplicationComponent
-        .factory()
-        .create(this)
-
-    private fun initDagger() {
-        XInjectionManager.init(this)
-        XInjectionManager.bindComponent(this)
-    }
 }
