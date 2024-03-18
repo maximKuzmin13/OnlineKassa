@@ -43,10 +43,10 @@ class RegistrationFragment : BaseFragment<EmptyNavArgs, RegistrationState, Regis
             login.setHint(R.string.login)
             login.setMaxLength(10)
             password.setHint(R.string.password)
-            password.setMaxLength(8)
+            password.setMaxLength(16)
             password.setImeOptions(EditorInfo.IME_ACTION_DONE)
             next.setText(R.string.next)
-            next.setState(true)
+            next.setState(false)
             next.onClick {
                 dispatchAction(RegistrationIntent.Next)
             }
@@ -69,6 +69,7 @@ class RegistrationFragment : BaseFragment<EmptyNavArgs, RegistrationState, Regis
                 password.editText.doAfterTextChanged {
                     dispatchAction(RegistrationIntent.Pass(it.toString()))
                 }
+                next.setState(innS?.isNotBlank() == true && loginS?.isNotBlank() == true && passS?.isNotBlank() == true )
             }
         }
     }

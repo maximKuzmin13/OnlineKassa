@@ -3,6 +3,7 @@ package ru.kassi.onlinekassa.presentation.mainFragment.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.ItemPointBinding
 import ru.kassi.onlinekassa.domain.api.points.Point
 
@@ -29,6 +30,8 @@ class PointsAdapter(val listener: (Int)-> Unit): RecyclerView.Adapter<PointsAdap
             titleValue.text = point.name
             adressValue.text = point.adress
             kassaValue.text = point.registerName
+            val backGround = if (point.haveExpiredKassa) R.drawable.item_border_red else R.drawable.item_border_default
+            pointBorder.setBackgroundResource(backGround)
             root.setOnClickListener {
                 listener.invoke(point.num)
             }

@@ -14,9 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
 import ru.kassi.onlinekassa.databinding.FragmentMainBinding
 import ru.kassi.onlinekassa.databinding.FragmentPinBinding
+import ru.kassi.onlinekassa.extentions.withArgs
 import ru.kassi.onlinekassa.presentation.base.BaseFragment
 import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.viewBinding
+import ru.kassi.onlinekassa.presentation.kassiFragment.KassaNavArgs
+import ru.kassi.onlinekassa.presentation.kassiFragment.KassiFragment
 import ru.kassi.onlinekassa.presentation.loginFragment.LoginViewModel
 
 @AndroidEntryPoint
@@ -25,6 +28,16 @@ class PinFragment : BaseFragment<EmptyNavArgs, PinState, PinIntent, PinViewModel
     private val binding by viewBinding(FragmentPinBinding::bind)
 
     override val viewModel: PinViewModel by viewModels()
+
+    companion object {
+        private const val PIN_ARGS = "pin_args"
+        fun newInstance(navArgs: PinNavArgs) = PinFragment().withArgs {
+            putParcelable(
+                PIN_ARGS, navArgs
+            )
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -116,6 +129,9 @@ class PinFragment : BaseFragment<EmptyNavArgs, PinState, PinIntent, PinViewModel
                         fourthPin.setImageDrawable(getDrawable(R.drawable.circle))
                     }
                 }
+            }
+            viewModel.pinError.observe(viewLifecycleOwner) {
+                showMessage(it)
             }
         }
     }

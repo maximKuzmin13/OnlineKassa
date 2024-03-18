@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ru.kassi.onlinekassa.R
@@ -56,6 +57,9 @@ class KassiFragment : BaseFragment<KassaNavArgs, KassiState, KassiIntent, KassiV
             dispatchIntent(KassiIntent.Back)
         }
         binding.recycler.adapter = adapter
+        viewModel.errorToast.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
         val spacesItemDecoration = SpacesItemDecoration(spacingInPixels)
         binding.recycler.addItemDecoration(spacesItemDecoration)

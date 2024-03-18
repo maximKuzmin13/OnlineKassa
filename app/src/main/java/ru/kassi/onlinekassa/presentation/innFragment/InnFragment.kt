@@ -50,7 +50,7 @@ class InnFragment: BaseFragment<EmptyNavArgs, InnState, InnIntent, InnViewModel>
         super.renderState(viewState)
         with(viewState){
             with(binding){
-                next.setState(innS?.isNotEmpty() == true)
+                next.setState(innS?.isNotBlank() == true)
                 inn.editText.doAfterTextChanged {
                     dispatchIntent(InnIntent.Inn(it.toString()))
                 }

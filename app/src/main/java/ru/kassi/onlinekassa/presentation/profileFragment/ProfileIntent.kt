@@ -7,4 +7,6 @@ sealed class ProfileIntent: MviIntent {
     object Start: ProfileIntent()
     object Loading: ProfileIntent()
     object Back: ProfileIntent()
+
+    object Logout: ProfileIntent()
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.kassi.onlinekassa.data.ResourceManager
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
+import ru.kassi.onlinekassa.domain.LoadKassaInfoUseCase
 import ru.kassi.onlinekassa.domain.api.auth.AuthRepository
 import ru.kassi.onlinekassa.domain.api.points.PointRepository
 import ru.kassi.onlinekassa.domain.api.profile.ProfileRepository
@@ -30,6 +31,7 @@ class ViewModelFactory @Inject constructor(
     private val profileRepository: ProfileRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase,
+    private val kassaInfoUseCase: LoadKassaInfoUseCase,
     @UserDataQualifier private val prefs: SharedPreferences
 ) : ViewModelProvider.Factory {
 
@@ -43,6 +45,7 @@ class ViewModelFactory @Inject constructor(
                     remoteConfigUseCase = remoteConfigUseCase,
                     pointRepository = pointRepository,
                     profileRepository = profileRepository,
+                    kassaInfoUseCase = kassaInfoUseCase
                 )
             }
             LoginViewModel::class.java -> {

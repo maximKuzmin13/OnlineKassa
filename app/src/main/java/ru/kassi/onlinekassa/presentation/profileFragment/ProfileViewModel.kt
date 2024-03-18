@@ -37,6 +37,11 @@ class ProfileViewModel @Inject constructor(
             ProfileIntent.Back -> {
                 profileCoordinator.goToMain()
             }
+
+            ProfileIntent.Logout -> {
+                profileRepository.logout()
+                profileCoordinator.goToAuth()
+            }
         }
     }
 

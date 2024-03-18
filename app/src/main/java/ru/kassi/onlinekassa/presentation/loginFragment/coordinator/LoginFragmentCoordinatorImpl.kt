@@ -25,10 +25,6 @@ class LoginFragmentCoordinatorImpl @Inject constructor(
         router.navigateTo(Screens.RegisterScreen())
     }
 
-    override fun goToPin() {
-        router.navigateTo(Screens.PinScreen())
-    }
-
     override fun exit() {
     }
 

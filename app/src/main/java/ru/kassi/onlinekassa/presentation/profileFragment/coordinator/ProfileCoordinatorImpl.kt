@@ -12,6 +12,9 @@ class ProfileCoordinatorImpl @Inject constructor(
     override fun goToMain() {
         router.navigateTo(Screens.MainScreen())
     }
+    override fun goToAuth() {
+        router.navigateTo(Screens.LoginScreen())
+    }
 
     override fun exit() {
     }

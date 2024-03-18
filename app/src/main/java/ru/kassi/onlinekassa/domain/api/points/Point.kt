@@ -10,5 +10,6 @@ data class Point(
     val num: Int,
     val name: String,
     val adress: String,
-    val registerName: String
+    val registerName: String,
+    var haveExpiredKassa: Boolean
 ): Parcelable

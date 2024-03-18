@@ -42,4 +42,8 @@ class ProfileRepository @Inject constructor(
             )
         )
     }
+
+    fun logout() {
+        prefs.edit().clear().apply()
+    }
 }

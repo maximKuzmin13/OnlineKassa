@@ -35,6 +35,9 @@ open class KassiButton @JvmOverloads constructor(
         if (isEnabled) {
             binding.button.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_button_enabled))
             binding.button.setTextColor(resources.getColor(R.color.white))
+        } else {
+            binding.button.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_button))
+            binding.button.setTextColor(resources.getColor(R.color.gray))
         }
     }
 

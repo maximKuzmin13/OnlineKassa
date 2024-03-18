@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import ru.kassi.onlinekassa.data.ModelType
 import ru.kassi.onlinekassa.data.ResourceManager
@@ -24,7 +25,7 @@ class PdfViewModel @Inject constructor(
     override val onError: suspend (Throwable) -> Unit = {}
 
     private var navArgs: PdfNavArgs? = null
-
+    private val handler = CoroutineExceptionHandler { _, throwable -> }
     override suspend fun reduceState(intent: PdfIntent) {
         return when (intent) {
             PdfIntent.Loading -> {}
@@ -38,7 +39,7 @@ class PdfViewModel @Inject constructor(
     }
 
     fun loadIpData(remoteConfig: FirebaseRemoteConfig) {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             _state.value = currentState.copy(isLoading = true)
             _state.value = currentState.copy(
                 name = remoteConfig.getString("name"),
@@ -55,7 +56,7 @@ class PdfViewModel @Inject constructor(
     }
 
     fun loadScomData(remoteConfig: FirebaseRemoteConfig) {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             _state.value = currentState.copy(isLoading = true)
             _state.value = currentState.copy(
                 name = remoteConfig.getString("scom_name"),
@@ -72,7 +73,7 @@ class PdfViewModel @Inject constructor(
     }
 
     fun loadServicecomData(remoteConfig: FirebaseRemoteConfig) {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             _state.value = currentState.copy(isLoading = true)
             _state.value = currentState.copy(
                 name = remoteConfig.getString("servicecom_name"),
@@ -89,7 +90,7 @@ class PdfViewModel @Inject constructor(
     }
 
     fun loadSidorovData(config: FirebaseRemoteConfig) {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             _state.value = currentState.copy(isLoading = true)
             _state.value = currentState.copy(
                 name = config.getString("sidorov_name"),

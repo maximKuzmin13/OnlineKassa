@@ -4,5 +4,7 @@ interface ProfileCoordinator {
 
     fun goToMain()
 
+    fun goToAuth()
+
     fun exit()
 }

@@ -7,7 +7,5 @@ interface LoginFragmentCoordinator {
     fun goToMail()
     fun goToAuth()
     fun goToRegister()
-
-    fun goToPin()
     fun exit()
 }

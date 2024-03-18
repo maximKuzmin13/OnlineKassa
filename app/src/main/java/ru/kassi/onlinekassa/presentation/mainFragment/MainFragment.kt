@@ -66,10 +66,11 @@ class MainFragment : BaseFragment<EmptyNavArgs, MainFragmentState, MainFragmentI
         super.renderState(viewState)
         with(viewState){
             with(binding){
-                pointsAdapter.data = pointList
+                pointsAdapter.data = pointList.orEmpty()
                 userName?.let {
                     toolbarInclude.toolbar.title = getString(R.string.common_greeting_title, it)
                 }
+                expiredKassa.isVisible = haveExpiredKass
             }
         }
     }

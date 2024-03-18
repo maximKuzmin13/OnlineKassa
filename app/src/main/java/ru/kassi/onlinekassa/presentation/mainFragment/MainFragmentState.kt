@@ -7,5 +7,6 @@ data class MainFragmentState(
     val isLoading: Boolean = true,
     val link: String? = null,
     val userName: String? = null,
-    val pointList: List<Point> = emptyList()
+    val pointList: List<Point>? = emptyList(),
+    val haveExpiredKass: Boolean = false,
 ) : MviState()

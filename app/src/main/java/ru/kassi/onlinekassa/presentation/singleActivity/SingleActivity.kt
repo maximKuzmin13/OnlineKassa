@@ -1,6 +1,7 @@
 package ru.kassi.onlinekassa.presentation.singleActivity
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle

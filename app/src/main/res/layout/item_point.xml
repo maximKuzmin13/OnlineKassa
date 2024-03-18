@@ -9,9 +9,9 @@
     android:paddingBottom="@dimen/dimens_8_dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/point_border"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_border_default"
         android:outlineAmbientShadowColor="@color/black"
         android:outlineSpotShadowColor="@color/black"
         android:paddingHorizontal="@dimen/dimens_8_dp"

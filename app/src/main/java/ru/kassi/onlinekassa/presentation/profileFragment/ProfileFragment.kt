@@ -43,6 +43,11 @@ class ProfileFragment : BaseFragment<EmptyNavArgs, ProfileState, ProfileIntent, 
         binding.toolbarInclude.toolbar.setNavigationOnClickListener {
             dispatchIntent(ProfileIntent.Back)
         }
+        binding.kassiButton.apply {
+            setState(true)
+            setText("Выйти из профиля")
+            onClick { dispatchIntent(ProfileIntent.Logout) }
+        }
         binding.recycler.adapter = adapter
     }
 

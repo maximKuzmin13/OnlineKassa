@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kassi.onlinekassa.data.ResourceManager
+import ru.kassi.onlinekassa.di.FirstRunQualifier
 import ru.kassi.onlinekassa.di.IoDispatcher
 import ru.kassi.onlinekassa.di.UserDataQualifier
 import ru.kassi.onlinekassa.domain.FetchRemoteConfigUseCase
@@ -20,6 +21,7 @@ import ru.kassi.onlinekassa.presentation.base.mvi.EmptyNavArgs
 import ru.kassi.onlinekassa.presentation.base.mvi.MviViewModel
 import ru.kassi.onlinekassa.presentation.pinFragment.coordinator.PinCoordinator
 import java.lang.Exception
+import java.lang.StringBuilder
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,6 +31,7 @@ class PinViewModel @Inject constructor(
     @IoDispatcher dispatcher: CoroutineDispatcher,
     private val remoteConfigUseCase: FetchRemoteConfigUseCase,
     @UserDataQualifier private val prefs: SharedPreferences,
+    @FirstRunQualifier private val firstRunPrefs: SharedPreferences
 ) : MviViewModel<EmptyNavArgs, PinState, PinIntent>(PinState()) {
     override val onError: suspend (Throwable) -> Unit = {}
 
@@ -36,6 +39,8 @@ class PinViewModel @Inject constructor(
 
     val _codeSize: MutableLiveData<Int> = MutableLiveData()
     val codeSize: LiveData<Int> = _codeSize
+    val _pinError: MutableLiveData<String> = MutableLiveData()
+    val pinError: LiveData<String> = _pinError
     private val handler = CoroutineExceptionHandler { _, throwable ->
         handleError(throwable)
     }
@@ -56,6 +61,11 @@ class PinViewModel @Inject constructor(
 
     fun addNumber(number: String) {
         if (code.size == 3) {
+            code.add(number)
+            if (prefs.getString("pin", null) == null) {
+                val pin = code.joinToString().replace(", ".toRegex(), "")
+                prefs.edit().putString("pin", pin).apply()
+            }
             authorised()
         } else {
             code.add(number)
@@ -80,6 +90,14 @@ class PinViewModel @Inject constructor(
     }
 
     fun authorised() {
-        coordinator.goToMain()
+        val pin = prefs.getString("pin", null)
+        val currentPin = code.joinToString().replace(", ".toRegex(), "")
+        if (currentPin == pin) {
+            coordinator.goToMain()
+        } else {
+            code.clear()
+            _pinError.postValue("Пин код не верный")
+        }
+
     }
 }

@@ -12,6 +12,7 @@ import ru.kassi.onlinekassa.presentation.mainFragment.MainFragment
 import ru.kassi.onlinekassa.presentation.pdfFragment.PdfFragment
 import ru.kassi.onlinekassa.presentation.pdfFragment.PdfNavArgs
 import ru.kassi.onlinekassa.presentation.pinFragment.PinFragment
+import ru.kassi.onlinekassa.presentation.pinFragment.PinNavArgs
 import ru.kassi.onlinekassa.presentation.profileFragment.ProfileFragment
 import ru.kassi.onlinekassa.presentation.registrationFragment.RegistrationFragment
 import ru.kassi.onlinekassa.presentation.webviewFragment.WebViewFragment
@@ -35,7 +36,7 @@ object Screens {
 
     fun ProfileScreen() = FragmentScreen { ProfileFragment() }
 
-    fun PinScreen() = FragmentScreen { PinFragment() }
+    fun PinScreen(firstAuth: Boolean) = FragmentScreen { PinFragment.newInstance(PinNavArgs(firstAuth = firstAuth))  }
 
     fun PdfScreen(model: String, type: Boolean?, num: String) = FragmentScreen { PdfFragment.newInstance(PdfNavArgs(model, type, num)) }
 

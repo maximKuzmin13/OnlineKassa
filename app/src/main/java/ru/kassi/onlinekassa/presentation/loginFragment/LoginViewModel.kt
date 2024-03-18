@@ -21,10 +21,6 @@ class LoginViewModel @Inject constructor(
         Log.d("tag", "login")
     }
 
-    fun goToMain() {
-        coordinator.goToPin()
-    }
-
     override val onError: suspend (Throwable) -> Unit = {}
 
     override suspend fun reduceState(intent: LoginIntent) {
